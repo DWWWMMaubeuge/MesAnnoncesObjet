@@ -1,6 +1,12 @@
 <?php
+include ('fonction_gene_annonce.php');
+//include ('page_membre_annonce.php');
 
-class Annonce
+
+setHeaderNoCache();
+gestionSession();
+
+class Annonce 
 {
 	private       	$titre;
 	protected 		$description;
@@ -8,7 +14,8 @@ class Annonce
 	private       	$prix;
 	protected      	$section;
 
-	public function __construct( $tit, $desc, $img ,$pr )
+
+	public function __construct($tit, $desc, $img, $pr )
 	{
 		$this->titre      =  $tit  ;
 		$this->description=  $desc ;
@@ -17,7 +24,6 @@ class Annonce
 		$this->section    =  "fourre-tout";
 
 	}
-
 	public function show()
 	{
 		echo "<h3>section ".$this->section."</h3>\n";	
@@ -28,8 +34,7 @@ class Annonce
 	}
 }
 
-
-
+	
 
 class Bateau extends Annonce
 {
@@ -49,7 +54,6 @@ class Bateau extends Annonce
 	}
 
 }
-
 
 class voiture extends Annonce
 {
@@ -75,8 +79,17 @@ class Moto extends Annonce
 	   	$this->puissance=$p;
 		$this->section    =  "moto";
 		$this->description .= 	"<br>puissance : $p CV<br>\n";
-	}   
+	}  
+	
+	
+	public function show()
+	{
+		echo "<h2>2roues</h2>\n";
+		parent::show();
+		echo "<br>cylindre :".$this->cylindre."cv<br>\n";
+	}
 }
+
 
 
 
@@ -106,7 +119,10 @@ $M1 = new Moto(     	"Kawasaki" ,
 						120,
 						300);
 
-
+$a1->show(); 
+$b1->show();
+$v1->show();
+$m1->show(); 
 $b1->changeDescription( "à moteur de 99CV" );
 
 
