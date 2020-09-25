@@ -5,7 +5,6 @@ body
     background-color:#6abadeba;  
     font-family: 'Arial';  
 }  
-
 .saisie_annonce{  
         width: 382px;  
         overflow: hidden;  
@@ -15,31 +14,23 @@ body
         background: #23463f;  
         border-radius: 15px ;  
           
-}
-
-
+}  
 h2{  
     text-align: center;  
     color: #277582;  
     padding: 20px;  
-} 
-
-
-
+}  
 label{  
     color: #08ffd1;  
     font-size: 17px;  
-}
-
-
+}  
 #form_title{  
     width: 300px;  
     height: 30px;  
     border: none;  
     border-radius: 3px;  
     padding-left: 8px;  
-}
-
+}  
 #form_description{  
     width: 300px;  
     height: 30px;  
@@ -84,6 +75,7 @@ label{
     padding-left: 7px;  
     color: blue;  
   
+  
 }  
 
 span{  
@@ -92,6 +84,6 @@ span{
 }  
 
 a{  
-    float: left;  
+    float: right;  
     background-color: grey;  
 }  

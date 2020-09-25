@@ -6,7 +6,7 @@ class Annonce
 	public 		$description;
 	public  	$image;
 	public  	$prix;
-
+	public      $descriptionSup;
 
 	public function __construct( )
 	{
@@ -14,10 +14,11 @@ class Annonce
 
 	public function parsePost( )
 	{
-		$this->title 		= $this->getPOSTValue( 'title');
-		$this->description	= $this->getPOSTValue( 'description');
-		$this->image 		= $this->getPOSTValue( 'image');
-		$this->prix 		= $this->getPOSTValue( 'prix' ); 
+		$this->title 		    = $this->getPOSTValue( 'title');
+		$this->description	    = $this->getPOSTValue( 'description');
+		$this->descriptionSup	= $this->getPOSTValue( 'descriptionPlus');
+		$this->image 		    = $this->getPOSTValue( 'image');
+		$this->prix 		    = $this->getPOSTValue( 'prix' ); 
 	} 
 
 	private function getPOSTValue( $key )
@@ -38,9 +39,10 @@ class Annonce
 
 	public function show()
 	{
-		//echo "<h3>section ".$this->section."</h3>\n";	
+		
 		echo "<h2>".$this->title."</h2>\n";	
 		echo "<p>".$this->description."</p>\n";
+		echo "<p>".$this->descriptionSup."</p>\n";
 		echo "<img src='" .$this->image."'  width='150' height='150' >" ;
 		echo "<br><strong>".$this->prix."€uros</strong>\n";
 	}
@@ -58,6 +60,9 @@ class Annonce
 
 		$str .= '<label><b>description</b></label>';
 		$str .= '<input type="text" name="description" id="form_description" placeholder="description">    ';
+
+		$str .= '<label><b>description</b></label>';
+		$str .= '<input type="text" name="descriptionSup" id="form_description_plus" placeholder="descriptionSup">    ';
 
 		$str .= '<label><b>lien image</b></label>';
 		$str .= '<input type="text" name="image" id="form_image" placeholder="lien image"> ';   
@@ -92,12 +97,10 @@ class Immobilier extends Annonce
 	public function show()
 	{
 		parent::show();
-		echo "<p>".$this->description.$this->surface." m2</p>\n";
+		echo "<p>".$this->surface." m2</p>\n";
 		echo "<p>".$this->nbrPieces." pièces</p>\n";
 	}
 }
-
-
 
 
 
@@ -159,7 +162,7 @@ function setHeaderNoCache()
 	echo "<meta http-equiv=\"Pragma\" content=\"no-cache\" />\n";
 	echo "<meta http-equiv=\"Expires\" content=\"0\" />\n";
 	echo "<link href=\"annonce.css\" rel=\"stylesheet\">\n";
-	//echo "<link href=\"formulaire.css\" rel=\"stylesheet\">\n";
+	echo "<link href=\"formulaire.css\" rel=\"stylesheet\">\n";
 	echo "<script>\n";
 	echo "function goAffGrand( id )\n";
 	//echo "{ window.location.replace(\"http://localhost$__URL_local/affiche_grand.php?IDAnnonce=\"+id );}\n";
