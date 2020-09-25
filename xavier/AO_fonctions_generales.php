@@ -6,7 +6,7 @@ class Annonce
 	public 		$description;
 	public  	$image;
 	public  	$prix;
-
+    
 
 	public function __construct( )
 	{
@@ -34,7 +34,7 @@ class Annonce
 		array_push( $annonces, $this);
 		$_SESSION[ 'annonces' ] = $annonces;
 	}
-
+    
 
 	public function show()
 	{
@@ -76,24 +76,30 @@ class Annonce
 
 class Immobilier extends Annonce
 {
-
 	private $surface;
 	private $nbrPieces;
 
-
+	
 
 	public function __construct( )
+	
 	{
 		$this->surface = 65;
 		$this->nbrPieces = 4;
-	} 
+	}  
 
 
 	public function show()
 	{
-		parent::show();
-		echo "<p>".$this->description.$this->surface." m2</p>\n";
+
+	   
+       parent::show();
+		echo "<p>".$this->surface." m2</p>\n";
 		echo "<p>".$this->nbrPieces." pièces</p>\n";
+
+
+
+
 	}
 }
 
