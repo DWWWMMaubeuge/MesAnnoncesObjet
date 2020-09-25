@@ -4,8 +4,8 @@ include ( 'L_fonctions_generales.php');
 setHeaderNoCache();
 gestionSession();
 
-$user_obj  = $_SESSION['user'];
-$users = $_SESSION['users'];
+$Annonce_obj  = $_SESSION['user'];
+$Annonce = $_SESSION['users'];
 
 echo "Votre login est ".$user_obj->pseudo."<br>\n";
 
@@ -15,10 +15,12 @@ echo '<a href="./logout.php">Déconnection</a><br>';
 ?>
 <?php
 
-foreach ($users as $user_obj ) 
+foreach ($Annonce as $Annonce_obj ) 
 {
-	echo $user_obj->affiche();	
+
+	echo $Annonce_obj->affiche();	
 }
+
 
 
 ?>
