@@ -1,18 +1,16 @@
 <?php
-include ( 'L_fonctions_generales.php');
+include ( 'FonctionGAnnonce.php');
 
 setHeaderNoCache();
 gestionSession();
 
-$newUser = new User();
+$newAnnonce = new Annonce();
 
-if ( isset($_POST['ok']) )
+if ( isset($_POST['envoi']) )
 {
-    $newUser->parsePost();
-    $newUser->save();
-
-    $_SESSION['user']  = $newUser;
-    header ('location: page_membre.php');
+    $newAnnonce->parsePost();
+    $newAnnonce->save();
+    header ('location: page_annonce.php');
 }
-echo $newUser->form();
+echo $newAnnonce->formAnnonce( "inscription.php");
 ?>

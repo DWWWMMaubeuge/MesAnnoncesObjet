@@ -5,16 +5,16 @@ setHeaderNoCache();
 gestionSession();
 
 
-$newUser = new User();
+$newAnnonce = new Annonce();
 
 if ( isset($_POST['ok']) )
 {
-    $newUser->parsePost();
-    if ( $newUser->checkPwd() )
+    $newAnnonce->parsePost();
+    if ( $newAnnonce->checkPwd() )
     {    
-        $_SESSION['user']  = $newUser;
-        header ('location: page_membre.php');
+        $_SESSION['annonce']  = $newAnnonce;
+        header ('location: pageannonce.php');
     }
 }
-echo $newUser->formLogin();
+echo $newAnnonce->form_annonce();
 ?>
