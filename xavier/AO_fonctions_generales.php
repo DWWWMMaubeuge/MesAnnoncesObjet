@@ -4,18 +4,21 @@ class Annonce
 {
 	public 		$title;
 	public 		$description;
+	public 		$descriptionSupp;
 	public  	$image;
 	public  	$prix;
 
 
 	public function __construct( )
 	{
+	
 	} 
 
 	public function parsePost( )
 	{
 		$this->title 		= $this->getPOSTValue( 'title');
 		$this->description	= $this->getPOSTValue( 'description');
+		$this->descriptionSupp	= $this->getPOSTValue( 'descriptionSupp');
 		$this->image 		= $this->getPOSTValue( 'image');
 		$this->prix 		= $this->getPOSTValue( 'prix' ); 
 	} 
@@ -41,6 +44,7 @@ class Annonce
 		//echo "<h3>section ".$this->section."</h3>\n";	
 		echo "<h2>".$this->title."</h2>\n";	
 		echo "<p>".$this->description."</p>\n";
+		echo "<p>".$this->descriptionSupp."</p>\n";
 		echo "<img src='" .$this->image."'  width='150' height='150' >" ;
 		echo "<br><strong>".$this->prix."€uros</strong>\n";
 	}
@@ -53,16 +57,19 @@ class Annonce
 		$str .= '<div class="saisie_annonce">';
 		$str .= '<form id="form_annonce" method="POST" action="'.$cible.'"> ';   
 
-		$str .= '<label><b>titre</b></label> ';  
-		$str .= '<input type="text" name="title" id="form_title" placeholder="titre annonce"> ';    
+		$str .= '<label><b>Titre</b></label> ';  
+		$str .= '<input type="text" name="title" id="form_title" placeholder="titre de l\'annonce"> ';    
 
-		$str .= '<label><b>description</b></label>';
+		$str .= '<label><b>Description</b></label>';
 		$str .= '<input type="text" name="description" id="form_description" placeholder="description">    ';
 
-		$str .= '<label><b>lien image</b></label>';
+		$str .= '<label><b>Description +</b></label>';
+		$str .= '<input type="text" name="descriptionSupp" id="form_description" placeholder="description supplémentaire">    ';
+
+		$str .= '<label><b>Lien image</b></label>';
 		$str .= '<input type="text" name="image" id="form_image" placeholder="lien image"> ';   
 
-		$str .= '<label><b>prix</b></label>';
+		$str .= '<label><b>Prix</b></label>';
 		$str .= '<input type="text" name="prix" id="form_prix" placeholder="prix"> ';   
 		$str .= '<br><br>    ';
 		$str .= '<input type="submit" name="ok" id="log" value="OK">       ';
@@ -92,7 +99,7 @@ class Immobilier extends Annonce
 	public function show()
 	{
 		parent::show();
-		echo "<p>".$this->description.$this->surface." m2</p>\n";
+		echo "<p>".$this->surface." m2</p>\n";
 		echo "<p>".$this->nbrPieces." pièces</p>\n";
 	}
 }
