@@ -2,11 +2,18 @@
 
 class Annonce 
 {
+<<<<<<< HEAD
 
 	private       	$titre;
 	protected 		$description;
 	private       	$image;
 	private       	$prix;
+=======
+	public 		$title;
+	public 		$description;
+	public  	$image;
+	public  	$prix;
+>>>>>>> cecb566101f453b26ebe9c593783fe2328c34244
 
 
 	public function __construct( )
@@ -15,6 +22,7 @@ class Annonce
 
 	public function parsePost( )
 	{
+<<<<<<< HEAD
 		if ( isset($_POST['titre']) )
 			$this->titre = $_POST['titre'];
 
@@ -28,6 +36,21 @@ class Annonce
 			$this->prix = $_POST['prix'];
 	} 
 
+=======
+		$this->title 		= $this->getPOSTValue( 'title');
+		$this->description	= $this->getPOSTValue( 'description');
+		$this->image 		= $this->getPOSTValue( 'image');
+		$this->prix 		= $this->getPOSTValue( 'prix' ); 
+	} 
+
+	private function getPOSTValue( $key )
+	{
+		if ( isset($_POST[ $key ]) ) 
+			return $_POST[ $key ];
+		return null;
+	}
+
+>>>>>>> cecb566101f453b26ebe9c593783fe2328c34244
 
 	public function save()
 	{
@@ -36,15 +59,24 @@ class Annonce
 		$_SESSION[ 'annonces' ] = $annonces;
 	}
 
+<<<<<<< HEAD
 	public function show()
 	{
 		//echo "<h3>section ".$this->section."</h3>\n";	
 		echo "<h2>".$this->titre."</h2>\n";	
+=======
+
+	public function show()
+	{
+		//echo "<h3>section ".$this->section."</h3>\n";	
+		echo "<h2>".$this->title."</h2>\n";	
+>>>>>>> cecb566101f453b26ebe9c593783fe2328c34244
 		echo "<p>".$this->description."</p>\n";
 		echo "<img src='" .$this->image."'  width='150' height='150' >" ;
 		echo "<br><strong>".$this->prix."€uros</strong>\n";
 	}
 
+<<<<<<< HEAD
 	public function form( $cible)
 	{
 		$str  = '';
@@ -72,17 +104,122 @@ class Annonce
 		$str .= '<input type="text" name="prix" id="Pass" placeholder="prix"> ';   
 		$str .= '<br><br>    ';
 		$str .= '<input type="submit" name="ok" id="log" value="Log In Here">       ';
+=======
+
+	public function form( $cible )
+	{
+		$str  = '';
+		$str .= '<h2>enregistrer annonce</h2><br>';    
+		$str .= '<div class="saisie_annonce">';
+		$str .= '<form id="form_annonce" method="POST" action="'.$cible.'"> ';   
+
+		$str .= '<label><b>titre</b></label> ';  
+		$str .= '<input type="text" name="title" id="form_title" placeholder="titre annonce"> ';    
+
+		$str .= '<label><b>description</b></label>';
+		$str .= '<input type="text" name="description" id="form_description" placeholder="description">    ';
+
+		$str .= '<label><b>lien image</b></label>';
+		$str .= '<input type="text" name="image" id="form_image" placeholder="lien image"> ';   
+
+		$str .= '<label><b>prix</b></label>';
+		$str .= '<input type="text" name="prix" id="form_prix" placeholder="prix"> ';   
+		$str .= '<br><br>    ';
+		$str .= '<input type="submit" name="ok" id="log" value="OK">       ';
+>>>>>>> cecb566101f453b26ebe9c593783fe2328c34244
 		$str .= '</form>     ';
 		$str .= '</div>    ';
 		return $str; 
 	}
+<<<<<<< HEAD
 
 
+=======
+}
+
+
+
+class Immobilier extends Annonce
+{
+
+	private $surface;
+	private $nbrPieces;
+
+
+
+	public function __construct( )
+	{
+		$this->surface = 65;
+		$this->nbrPieces = 4;
+
+		$this->description .= "<p>".$this->surface." m2</p>"."<p>".$this->surface." m2</p>";   
+
+	} 
+
+
+	public function show()
+	{
+		parent::show();
+		//echo "<p>".$this->surface." m2</p>\n";
+		//echo "<p>".$this->surface." m2</p>
+	}
+>>>>>>> cecb566101f453b26ebe9c593783fe2328c34244
 }
 
 
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> cecb566101f453b26ebe9c593783fe2328c34244
 function setHeaderNoCache()
 {
 	GLOBAL $__URL_local;
@@ -90,7 +227,11 @@ function setHeaderNoCache()
 	echo "<DOCTYPE html>\n";
 	echo "<html>\n";
 	echo "<head>\n";
+<<<<<<< HEAD
 	echo "<meta http-equiv=\"Cache-Control\" content=\"no-cache, no-store, must-revalidate\" />\n";
+=======
+
+>>>>>>> cecb566101f453b26ebe9c593783fe2328c34244
 	echo "<meta http-equiv=\"Pragma\" content=\"no-cache\" />\n";
 	echo "<meta http-equiv=\"Expires\" content=\"0\" />\n";
 	echo "<link href=\"annonce.css\" rel=\"stylesheet\">\n";
