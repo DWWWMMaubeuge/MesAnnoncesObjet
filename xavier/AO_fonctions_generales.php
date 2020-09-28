@@ -52,7 +52,7 @@ class Annonce
 
 	protected function createField(  $label, $name )
 	{
-		//$ret  = "<label><b>$label</b></label>\n";  
+		$ret  = "<label><b>$label</b></label>\n";  
 		$ret .="<input type=\"text\" name=\"$name\" class=\"form_$name\" placeholder=\"$label\">\n";    
 		$ret .="<br>\n";    
 		return $ret;
@@ -116,57 +116,6 @@ class Immobilier extends Annonce
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function setHeaderNoCache()
 {
 	GLOBAL $__URL_local;
@@ -216,4 +165,40 @@ function gestionSession()
 	}	
 }
 
+
+class Voiture extends Annonce
+{
+	private $marque;
+	private $modele;
+
+
+	public function __construct( )
+	{
+		
+	} 
+
+	public function parsePOST()
+	{
+		parent::parsePOST();
+		$this->marque		= $this->getPOSTValue( 'marque');
+		$this->modele	= $this->getPOSTValue( 'modele');
+		$this->description .= "<br>".$this->marque." <br>".$this->modele;	
+	}
+
+
+	public function form( $cible )
+	{
+		parent::form( $cible );
+
+		$this->strFormField .= $this->createField( "marque du véhicule", "marque" );    
+		$this->strFormField .= $this->createField( "modèle de la voiture", "modele" );    
+
+		return $this->strFormHead.$this->strFormField.$this->strFormEnd; 
+	}
+
+	public function show()
+	{
+		parent::show();
+	}
+}
 ?>
