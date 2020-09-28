@@ -2,25 +2,31 @@
 
 class Annonce 
 {
-	public 		$title;
+	public 		$titre;
 	public 		$description;
+	public 		$descriptionSupp;
 	public  	$image;
 	public  	$prix;
+
+	public 		$strFormHead;
+	public 		$strFormField;
+	public 		$strFormEnd;
 
 
 	public function __construct( )
 	{
+	
 	} 
 
 	public function parsePost( )
 	{
-		$this->title 		= $this->getPOSTValue( 'title');
 		$this->description	= $this->getPOSTValue( 'description');
+		$this->titre 		= $this->getPOSTValue( 'titre');
 		$this->image 		= $this->getPOSTValue( 'image');
 		$this->prix 		= $this->getPOSTValue( 'prix' ); 
 	} 
 
-	private function getPOSTValue( $key )
+	protected function getPOSTValue( $key )
 	{
 		if ( isset($_POST[ $key ]) ) 
 			return $_POST[ $key ];
@@ -39,36 +45,39 @@ class Annonce
 	public function show()
 	{
 		//echo "<h3>section ".$this->section."</h3>\n";	
-		echo "<h2>".$this->title."</h2>\n";	
+		echo "<h2>".$this->titre."</h2>\n";	
 		echo "<p>".$this->description."</p>\n";
+		echo "<p>".$this->descriptionSupp."</p>\n";
 		echo "<img src='" .$this->image."'  width='150' height='150' >" ;
 		echo "<br><strong>".$this->prix."€uros</strong>\n";
 	}
 
 
+	protected function createField(  $label, $name )
+	{
+		//$ret  = "<label><b>$label</b></label>\n";  
+		$ret ="<input type=\"text\" name=\"$name\" class=\"form_$name\" placeholder=\"$label\">\n";    
+		$ret .="<br>\n";    
+		return $ret;
+	}
+
+
 	public function form( $cible )
 	{
-		$str  = '';
-		$str .= '<h2>enregistrer annonce</h2><br>';    
-		$str .= '<div class="saisie_annonce">';
-		$str .= '<form id="form_annonce" method="POST" action="'.$cible.'"> ';   
+		$this->strFormHead  = '<h2>Enregistrer une annonce</h2><br>';    
+		$this->strFormHead .= '<div class="saisie_annonce">';
+		$this->strFormHead .= '<form id="form_annonce" method="POST" action="'.$cible.'"> '; 
 
-		$str .= '<label><b>titre</b></label> ';  
-		$str .= '<input type="text" name="title" id="form_title" placeholder="titre annonce"> ';    
+		$this->strFormField  = $this->createField( "Titre de l'annonce", "titre" );    
+		$this->strFormField .= $this->createField( "Description", "description" );    
+		$this->strFormField .= $this->createField( "Lien vers l'image", "image" );    
+		$this->strFormField .= $this->createField( "Prix", "prix" );    
 
-		$str .= '<label><b>description</b></label>';
-		$str .= '<input type="text" name="description" id="form_description" placeholder="description">    ';
+		$this->strFormEnd  = '<input type="submit" name="ok" id="log" value="OK">       ';
+		$this->strFormEnd .= '</form>     ';
+		$this->strFormEnd .= '</div>    ';
 
-		$str .= '<label><b>lien image</b></label>';
-		$str .= '<input type="text" name="image" id="form_image" placeholder="lien image"> ';   
-
-		$str .= '<label><b>prix</b></label>';
-		$str .= '<input type="text" name="prix" id="form_prix" placeholder="prix"> ';   
-		$str .= '<br><br>    ';
-		$str .= '<input type="submit" name="ok" id="log" value="OK">       ';
-		$str .= '</form>     ';
-		$str .= '</div>    ';
-		return $str; 
+		return $this->strFormHead.$this->strFormField.$this->strFormEnd; 
 	}
 }
 
@@ -76,11 +85,8 @@ class Annonce
 
 class Immobilier extends Annonce
 {
-
 	private $surface;
 	private $nbrPieces;
-
-
 
 	public function __construct( )
 	{
@@ -88,13 +94,63 @@ class Immobilier extends Annonce
 		$this->nbrPieces = 4;
 	} 
 
+	public function parsePOST()
+	{
+		parent::parsePOST();
+		$this->surface		= $this->getPOSTValue( 'surface');
+		$this->nbrPieces	= $this->getPOSTValue( 'nbrPieces');
+		$this->description .= "<br>".$this->surface." m2<br>".$this->nbrPieces." pièces";	
+	}
+
+
+	public function form( $cible )
+	{
+		parent::form( $cible );
+
+		$this->strFormField .= $this->createField( "surface du bien", "surface" );    
+		$this->strFormField .= $this->createField( "nombre de pièces", "nbrPieces" );    
+
+		return $this->strFormHead.$this->strFormField.$this->strFormEnd; 
+	}
 
 	public function show()
 	{
 		parent::show();
-		echo "<p>".$this->description.$this->surface." m2</p>\n";
-		echo "<p>".$this->nbrPieces." pièces</p>\n";
 	}
+}
+
+
+
+class Voiture extends Annonce
+{
+	private $marque;
+	private $annee;
+
+	public function __construct( )
+	{
+	
+	} 
+
+	public function parsePOST()
+	{
+		parent::parsePOST();
+		$this->marque		= $this->getPOSTValue( 'marque');
+		$this->annee	= $this->getPOSTValue( 'annee');
+		$this->description .= "<br>".$this->marque."<br>".$this->annee." année";	
+	}
+
+
+	public function form( $cible )
+	{
+		parent::form( $cible );
+
+		$this->strFormField .= $this->createField( "Marque de la voiture", "marque" );    
+		$this->strFormField .= $this->createField( "Année de la voiture", "annee" );    
+
+		return $this->strFormHead.$this->strFormField.$this->strFormEnd; 
+	}
+
+
 }
 
 
