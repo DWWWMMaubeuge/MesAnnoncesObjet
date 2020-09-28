@@ -66,7 +66,7 @@ function setHeaderNoCache()
 	echo "<meta http-equiv=\"Cache-Control\" content=\"no-cache, no-store, must-revalidate\" />\n";
 	echo "<meta http-equiv=\"Pragma\" content=\"no-cache\" />\n";
 	echo "<meta http-equiv=\"Expires\" content=\"0\" />\n";
-	echo "<link href=\"annonce.css\" rel=\"stylesheet\">\n";
+	//echo "<link href=\"annonce.css\" rel=\"stylesheet\">\n";
 	echo "<link href=\"formulaire.css\" rel=\"stylesheet\">\n";
 	echo "<script>\n";
 	echo "function goAffGrand( id )\n";

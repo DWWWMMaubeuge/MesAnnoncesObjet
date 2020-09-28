@@ -4,7 +4,7 @@ include ( 'AO_fonctions_generales.php');
 setHeaderNoCache();
 gestionSession();
 
-$newAnnonce = new Immobilier();
+$newAnnonce = new Voyages();
 
 if ( isset($_POST['ok']) )
 {
