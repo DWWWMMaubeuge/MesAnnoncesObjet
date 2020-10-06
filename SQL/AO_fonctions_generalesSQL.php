@@ -11,6 +11,8 @@ class AnnonceSQL
 	public 		$strFormField;
 	public 		$strFormEnd;
 
+	public $sqlRequest;
+
 
 	public function __construct( )
 	{
@@ -24,6 +26,14 @@ class AnnonceSQL
 		$this->prix 		= $this->getPOSTValue( 'prix' ); 
 	} 
 
+	public function readData( $array_kv )
+	{
+		$this->description	= $array_kv[ 'description' ];
+		$this->titre 		= $array_kv[ 'titre' ];
+		$this->image 		= $array_kv[ 'image' ];
+		$this->prix 		= $array_kv[ 'prix'  ]; 
+	} 
+
 	protected function getPOSTValue( $key )
 	{
 		if ( isset($_POST[ $key ]) ) 
@@ -34,9 +44,8 @@ class AnnonceSQL
 
 	public function save()
 	{
-		GLOBAL $annonces; 
-		array_push( $annonces, $this);
-		$_SESSION[ 'annonces' ] = $annonces;
+		$req = "INSERT INTO xavier.annonces ( titre, description, image, prix ) VALUES ( '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix." )";
+		return executeSQL( $req );
 	}
 
 
@@ -110,7 +119,6 @@ class Immobilier extends AnnonceSQL
 
 		return $this->strFormHead.$this->strFormField.$this->strFormEnd; 
 	}
-
 }
 
 
@@ -152,15 +160,32 @@ class Immobilier extends AnnonceSQL
 
 
 
+function executeSQL( $req )
+{
+	$result = false;
+	if ( $req != "" )
+	{
+		$servername = "10.115.49.73";
+		$username = "xavier";
+		$password = "xavier";
+
+		// Create connection
+		$conn = new mysqli($servername, $username, $password);
+
+		// Check connection
+		if ($conn->connect_error) 
+		{
+		  die("Connection failed: " . $conn->connect_error);
+		}
 
 
-
-
-
-
-
-
-
+		//echo $req."<br>";
+		$result = $conn->query( $req );
+			
+		$conn->close();
+	}
+	return $result;
+}
 
 
 
