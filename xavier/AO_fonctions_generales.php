@@ -6,11 +6,7 @@ class Annonce
 	public 		$description;
 	public  	$image;
 	public  	$prix;
-
-	public 		$strFormHead;
-	public 		$strFormField;
-	public 		$strFormEnd;
-
+    
 
 	public function __construct( )
 	{
@@ -38,7 +34,7 @@ class Annonce
 		array_push( $annonces, $this);
 		$_SESSION[ 'annonces' ] = $annonces;
 	}
-
+    
 
 	public function show()
 	{
@@ -85,11 +81,20 @@ class Immobilier extends Annonce
 	private $surface;
 	private $nbrPieces;
 
+	
+
 	public function __construct( )
+	
 	{
+<<<<<<< HEAD
 		//$this->surface = 65;
 		//$this->nbrPieces = 4;
 	} 
+=======
+		$this->surface = 65;
+		$this->nbrPieces = 4;
+	}  
+>>>>>>> c5b44a3ee6c88a590de341f88ea8cb1a0c73d76d
 
 	public function parsePOST()
 	
@@ -111,6 +116,21 @@ class Immobilier extends Annonce
 		return $this->strFormHead.$this->strFormField.$this->strFormEnd; 
 	}
 
+<<<<<<< HEAD
+=======
+	public function show()
+	{
+
+	   
+       parent::show();
+		echo "<p>".$this->surface." m2</p>\n";
+		echo "<p>".$this->nbrPieces." pièces</p>\n";
+
+
+
+
+	}
+>>>>>>> c5b44a3ee6c88a590de341f88ea8cb1a0c73d76d
 }
 
 
