@@ -1,6 +1,6 @@
 <?php
 
-class Annonce 
+class AnnonceSQL
 {
 	public 		$titre;
 	public 		$description;
