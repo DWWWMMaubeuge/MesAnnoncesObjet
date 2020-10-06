@@ -80,7 +80,7 @@ class AnnonceSQL
 
 
 
-class Immobilier extends Annonce
+class Immobilier extends AnnonceSQL
 {
 	private $surface;
 	private $nbrPieces;

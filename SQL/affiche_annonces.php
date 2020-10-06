@@ -1,5 +1,5 @@
 <?php
-include ( 'AO_fonctions_generales.php');
+include ( 'AO_fonctions_generalesSQL.php');
 
 setHeaderNoCache();
 gestionSession();

@@ -1,10 +1,10 @@
 <?php
-include ( 'AO_fonctions_generales.php');
+include ( 'AO_fonctions_generalesSQL.php');
 
 setHeaderNoCache();
 gestionSession();
 
-$newAnnonce = new Annonce();
+$newAnnonce = new AnnonceSQL();
 
 if ( isset($_POST['ok']) )
 {
