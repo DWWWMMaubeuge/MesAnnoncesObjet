@@ -2,13 +2,21 @@
 include ( 'AO_fonctions_generalesSQL.php');
 
 setHeaderNoCache();
-gestionSession();
-	 	
 
-foreach ( $annonces as $annonce_obj ) 
-{
-	echo $annonce_obj->show();	
+$req = "SELECT * FROM xavier.annonces;"; 
+$result = executeSQL( $req );
+
+while ( $row = $result->fetch_assoc() )
+{	
+
+	$anonce = new annonceSQL();
+	
+	$anonce->readData( $row );
+	
+	echo $anonce->show();	
 }
+
+
 ?>
 <br>
 <a href='saisie_annonce.php'>ajouter une annonce</a>
