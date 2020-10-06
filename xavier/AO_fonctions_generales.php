@@ -80,7 +80,7 @@ class Annonce
 
 
 
-/*class Immobilier extends Annonce
+class Immobilier extends Annonce
 {
 	private $surface;
 	private $nbrPieces;
@@ -115,7 +115,7 @@ class Annonce
 		parent::show();
 	}
 }
-*/
+
 
 class Voyages extends Annonce
 {

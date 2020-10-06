@@ -93,5 +93,6 @@ span{
 
 a{  
     float: left;  
-    background-color: grey;  
+    background-color: grey;
+    text-decoration: none;  
 }  
