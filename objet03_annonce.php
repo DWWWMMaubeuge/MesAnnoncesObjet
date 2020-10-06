@@ -27,7 +27,7 @@ class Annonce
 		echo "<br><strong>".$this->prix."€uros</strong>\n";
 	}
 }
-
+				
 
 
 

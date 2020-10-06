@@ -12,3 +12,5 @@ foreach ( $annonces as $annonce_obj )
 ?>
 <br>
 <a href='saisie_annonce.php'>ajouter une annonce</a>
+<br><a href='test_immo.php'>ajouter une annonce immobilière</a>
+<br><a href='test_voiture.php'>ajouter une annonce automobile</a>
