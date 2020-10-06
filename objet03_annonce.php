@@ -3,37 +3,61 @@ include ('fonction_gene_annonce.php');
 //include ('page_membre_annonce.php');
 
 
+<<<<<<< HEAD
 setHeaderNoCache();
 gestionSession();
 
 class Annonce 
-{
-	private       	$titre;
-	protected 		$description;
-	private       	$image;
-	private       	$prix;
-	protected      	$section;
+=======
 
+class Annonce
+>>>>>>> master
+{
+	public       $titre;
+	public $description;
+	public       $image;
+	public        $prix;
+
+
+<<<<<<< HEAD
 
 	public function __construct($tit, $desc, $img, $pr )
+=======
+	public function __construct( )
+>>>>>>> master
 	{
-		$this->titre      =  $tit  ;
-		$this->description=  $desc ;
-		$this->image      =  $img  ;
-		$this->prix       =  $pr  ;
-		$this->section    =  "fourre-tout";
+	} 
 
+	public function parsePost( )
+	{
+		if ( isset($_POST['titre']) )
+			$this->titre = $_POST['titre'];
+
+		if ( isset($_POST['description']) ) 
+			$this->description = $_POST['description'];
+
+		if ( isset($_POST['image']) ) 
+			$this->image = $_POST['image'];
+
+		if ( isset($_POST['prix']) ) 
+			$this->prix = $_POST['prix'];
+	} 
+
+<<<<<<< HEAD
 	}
+=======
+
+>>>>>>> master
 	public function show()
 	{
-		echo "<h3>section ".$this->section."</h3>\n";	
+		//echo "<h3>section ".$this->section."</h3>\n";	
 		echo "<h2>".$this->titre."</h2>\n";	
 		echo "<p>".$this->description."</p>\n";
 		echo "<img src='" .$this->image."'  width='150' height='150' >" ;
 		echo "<br><strong>".$this->prix."€uros</strong>\n";
 	}
-}
 
+<<<<<<< HEAD
 	
 
 class Bateau extends Annonce
@@ -41,18 +65,24 @@ class Bateau extends Annonce
 	private $longueur;
 
 	public function __construct( $tit, $desc, $img, $longueur, $pr )
+=======
+
+	public function save()
+>>>>>>> master
 	{
-		parent::__construct( $tit, $desc, $img ,$pr);
-		$this->longueur = $longueur;
-		$this->section    =  	"bateau";
-		$this->description .= 	"<br>longueur : $longueur metres<br>\n";
+		GLOBAL $annonce; 
+		array_push( $annonce, $this);
+		$_SESSION[ 'annonce' ] = $annonce;
 	}
 
-	public function changeDescription( $nd )
-	{
-		$this->description .= 	$nd;
-	}
 
+	/*public function affiche()
+	{
+		return "pseudo : ".$this->pseudo." mail : ".$this->mail." dep : ".$this->dep."<br>\n" ;
+	}
+	*/
+
+<<<<<<< HEAD
 }
 
 class voiture extends Annonce
@@ -60,19 +90,42 @@ class voiture extends Annonce
 	private $puissance;	
 
 	public function __construct( $tit, $desc, $img, $p, $pr )
+=======
+	public function form($cible)
+>>>>>>> master
 	{
-		parent::__construct( $tit, $desc, $img, $pr );
-	   	$this->puissance = $p;
-		$this->section    =  "automobile";
-		$this->description .= 	"<br>puissance : $p CV<br>\n";
-	}   
-}
+		$str  = '';
+		$str .= '<h2>Annonce</h2><br>';    
+		$str .= '<div class="titre">    ';
+		$str .= "<form id=\"login\" method=\"POST\" action=\"$cible\"> ";   
+		$str .= '<label><b>titre    ';
+		$str .= '</b>    ';
+		$str .= '</label>  ';  
+		$str .= '<input type="text" name="titre" id="Uname" placeholder="titre"> ';    
+		$str .= '<br><br>    ';
+		$str .= '<label><b>description';     
+		$str .= '</b>    ';
+		$str .= '</label>    ';
+		$str .= '<input type="text" name="description" id="mail" placeholder="description">  ';
+		$str .= '<br><br>    ';
+		$str .= '<label><b>image';     
+		$str .= '</b>    ';
+		$str .= '</label>    ';
+		$str .= '<input type="text" name="image" id="dep" placeholder="image"> ';   
+		$str .= '<br><br>    ';
+		$str .= '<label><b>prix';     
+		$str .= '</b>    ';
+		$str .= '</label>    ';
+		$str .= '<input type="prix" name="prix" id="Pass" placeholder="prix"> ';   
+		$str .= '<br><br>    ';
+		$str .= '<input type="submit" name="ok" id="log" value="valider"> ';
+		$str .= '</form>     ';
+		$str .= '</div>    ';
+		return $str; 
+	}
 
 
-class Moto extends Annonce
-{
-	private $puissance;
-
+<<<<<<< HEAD
 	public function __construct( $tit, $desc, $img, $p, $pr )
 	{
 		parent::__construct( $tit, $desc, $img, $pr );
@@ -137,4 +190,9 @@ foreach ($tableau as $obj )
 {
 	$obj->show();
 }
+=======
+}
+
+
+>>>>>>> master
 ?>
