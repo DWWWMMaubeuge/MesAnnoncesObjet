@@ -11,11 +11,6 @@ class Annonce
 	public 		$strFormField;
 	public 		$strFormEnd;
 
-
-	public function __construct( )
-	{
-	} 
-
 	public function parsePost( )
 	{
 		$this->description	= $this->getPOSTValue( 'description');
@@ -53,7 +48,7 @@ class Annonce
 	protected function createField(  $label, $name )
 	{
 		//$ret  = "<label><b>$label</b></label>\n";  
-		$ret .="<input type=\"text\" name=\"$name\" class=\"form_$name\" placeholder=\"$label\">\n";    
+		$ret ="<input type=\"text\" name=\"$name\" class=\"form_$name\" placeholder=\"$label\">\n";    
 		$ret .="<br>\n";    
 		return $ret;
 	}
@@ -116,56 +111,58 @@ class Immobilier extends Annonce
 	}
 }
 
+class Voiture extends Annonce
+{
+	private $marque;
+	private $model;
+	private $kilometrage;
+	private $boite_de_vitesse;
+	private $annees;
+	private $puissanceFiscale;
+	private $puissanceReelle;
+	private $carburant;
+	private $porte;
+	private $places;
+	private $mise_en_circulation;
+
+	public function parsePOST()
+	{
+		parent::parsePOST();
+		$this->marque		= $this->getPOSTValue( 'marque');
+		$this->model	= $this->getPOSTValue( 'model');
+		$this->kilometrage	= $this->getPOSTValue( 'kilometrage');
+		$this->boite_de_vitesse	= $this->getPOSTValue( 'boite_de_vitesse');
+		$this->annees	= $this->getPOSTValue( 'annees');
+		$this->puissanceFiscale	= $this->getPOSTValue( 'puissanceFiscale');
+		$this->puissanceReelle	= $this->getPOSTValue( 'puissanceReelle');
+		$this->carburant	= $this->getPOSTValue( 'carburant');
+		$this->porte	= $this->getPOSTValue( 'porte');
+		$this->places	= $this->getPOSTValue( 'places');
+		$this->mise_en_circulation	= $this->getPOSTValue( 'mise_en_circulation');
+		$this->description .= "<br>".$this->marque."<br>".$this->model."<br>".$this->kilometrage."km<br>".$this->boite_de_vitesse." <br>".$this->annees." <br>".$this->puissanceFiscale."CV<br>".$this->puissanceReelle."Ch din<br>".$this->carburant." <br>".$this->porte." <br>".$this->places." <br>".$this->mise_en_circulation." <br>";	
+	}
 
 
+	public function form( $cible )
+	{
+		parent::form( $cible );
 
+		$this->strFormField .= $this->createField( "marque", "marque" );
+		$this->strFormField .= $this->createField( "model", "model" );
+		$this->strFormField .= $this->createField( "kilometrage du bien", "kilometrage" );
+		$this->strFormField .= $this->createField( "boite de vitesse", "boite_de_vitesse" );
+		$this->strFormField .= $this->createField( "annees du bien", "annees" );
+		$this->strFormField .= $this->createField( "puissanceFiscale du bien", "puissanceFiscale" );
+		$this->strFormField .= $this->createField( "puissanceReelle", "puissanceReelle" );
+		$this->strFormField .= $this->createField( "carburant", "carburant" );
+		$this->strFormField .= $this->createField( "porte", "porte" );
+		$this->strFormField .= $this->createField( "places", "places" );
+		$this->strFormField .= $this->createField( "mise en circulation", "mise_en_circulation" );
 
+		return $this->strFormHead.$this->strFormField.$this->strFormEnd; 
+	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 function setHeaderNoCache()
 {
