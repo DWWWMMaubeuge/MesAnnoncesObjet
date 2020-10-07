@@ -49,7 +49,7 @@ class Annonce
 	protected function createField(  $label, $name )
 	{
 		//$ret  = "<label><b>$label</b></label>\n";  
-		$ret .="<input type=\"text\" name=\"$name\" class=\"form_$name\" placeholder=\"$label\">\n";    
+		$ret ="<input type=\"text\" name=\"$name\" class=\"form_$name\" placeholder=\"$label\">\n";    
 		$ret .="<br>\n";    
 		return $ret;
 	}
@@ -86,8 +86,8 @@ class Immobilier extends Annonce
 	public function __construct( )
 	
 	{
-		$this->surface = 65;
-		$this->nbrPieces = 4;
+		//$this->surface = 65;
+		//$this->nbrPieces = 4;
 	}  
 
 	public function parsePOST()
@@ -117,15 +117,73 @@ class Immobilier extends Annonce
 		echo "<p>".$this->surface." m2</p>\n";
 		echo "<p>".$this->nbrPieces." pièces</p>\n";
 
-
-
-
 	}
 }
 
 
 
+class Moto extends Annonce
+{
+	private $type;
+	private $cyl;
+	private $ann;
+	private $km;
+	private $model;
+	private $color;
 
+	
+
+	public function __construct( )
+	
+	{
+		//$this->type = 65;
+		//$this->cyl = 4;
+		//$this->ann = 65;
+		//$this->km = 4;
+		//$this->model = 65;
+		//$this->color = 4;
+	}  
+
+	public function parsePOST()
+	{
+		parent::parsePOST();
+		$this->type		= $this->getPOSTValue( 'type');
+		$this->cyl		= $this->getPOSTValue( 'cyl');
+		$this->ann		= $this->getPOSTValue( 'ann');
+		$this->km		= $this->getPOSTValue( 'km');
+		$this->model	= $this->getPOSTValue( 'model');
+		$this->color	= $this->getPOSTValue( 'color');
+		$this->description .= "<br>".$this->type."<br>".$this->cyl."cm3<br>".$this->ann."<br>".$this->km."<br>".$this->model."<br>".$this->color."<br>";	
+	}
+
+
+	public function form( $cible )
+	{
+		parent::form( $cible );
+
+		$this->strFormField .= $this->createField( "type de véhicule", "type" );    
+		$this->strFormField .= $this->createField( "cylindrée", "cyl" );
+		$this->strFormField .= $this->createField( "année de mise en circulation", "ann" );    
+		$this->strFormField .= $this->createField( "nombre de km au compteur", "km" );
+		$this->strFormField .= $this->createField( "marque et modèle", "model" );    
+		$this->strFormField .= $this->createField( "couleur du véhicule", "color" );    
+
+		return $this->strFormHead.$this->strFormField.$this->strFormEnd; 
+	}
+
+	public function show()
+	{
+
+	   
+       parent::show();
+		echo "<p>".$this->type."</p>\n";
+		echo "<p>".$this->cyl." cm3</p>\n";
+		echo "<p>".$this->ann."</p>\n";
+		echo "<p>".$this->km."</p>\n";
+		echo "<p>".$this->model."</p>\n";
+		echo "<p>".$this->color."</p>\n";
+	}
+}
 
 
 
