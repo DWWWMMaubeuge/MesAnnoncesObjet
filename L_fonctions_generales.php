@@ -28,11 +28,21 @@ class User
 	} 
 
 
+	public function show()
+	{
+		echo "<h3>section ".$this->section."</h3>\n";	
+		echo "<h2>".$this->titre."</h2>\n";	
+		echo "<p>".$this->description."</p>\n";
+		echo "<img src='" .$this->image."'  width='150' height='150' >" ;
+		echo "<br><strong>".$this->prix."€uros</strong>\n";
+	}
+
+
 	public function save()
 	{
-		GLOBAL $users; 
-		array_push( $users, $this);
-		$_SESSION[ 'users' ] = $users;
+		GLOBAL $annonce; 
+		array_push( $annonce, $this);
+		$_SESSION[ 'annonce' ] = $annonce;
 	}
 
 
@@ -139,6 +149,33 @@ function setHeaderNoCache()
 	echo "</head>\n";
 	echo "<body>\n";
 }
+
+
+
+
+
+
+function form_annonce( $cible )
+{
+    echo "<form method=\"POST\" action=\"$cible\">\n";
+    echo "    <input type=\"text\" name=\"titre\" placeholder=\"Inserer mon titre\">\n";
+    echo "    <input type=\"number\" name=\"prix\" placeholder=\"prix\">\n";
+    echo "    <input type=\"text\" name=\"image\" placeholder=\"lien d'une image\">\n";
+    echo "    <textarea name=\"description\" row=\"10\"placeholder='Inserer votre description'></textarea>\n";
+    echo "    <input type='submit' name=\"envoi\" value=\"Envoyer\">\n";
+    echo "</form>\n";
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
