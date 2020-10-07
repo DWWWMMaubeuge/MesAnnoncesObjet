@@ -7,6 +7,9 @@ class AnnonceSQL
 	public  	$image;
 	public  	$prix;
 
+	public 		$descriptionAffichage;
+
+
 	public 		$strFormHead;
 	public 		$strFormField;
 	public 		$strFormEnd;
@@ -23,7 +26,8 @@ class AnnonceSQL
 		$this->description	= $this->getPOSTValue( 'description');
 		$this->titre 		= $this->getPOSTValue( 'titre');
 		$this->image 		= $this->getPOSTValue( 'image');
-		$this->prix 		= $this->getPOSTValue( 'prix' ); 
+		$this->prix 		= $this->getPOSTValue( 'prix' );
+		$this->descriptionAffichage = $this->description; 
 	} 
 
 	public function readData( $array_kv )
@@ -32,6 +36,7 @@ class AnnonceSQL
 		$this->titre 		= $array_kv[ 'titre' ];
 		$this->image 		= $array_kv[ 'image' ];
 		$this->prix 		= $array_kv[ 'prix'  ]; 
+		$this->descriptionAffichage = $this->description; 
 	} 
 
 	protected function getPOSTValue( $key )
@@ -48,12 +53,11 @@ class AnnonceSQL
 		return executeSQL( $req );
 	}
 
-
 	public function show()
 	{
 		//echo "<h3>section ".$this->section."</h3>\n";	
 		echo "<h2>".$this->titre."</h2>\n";	
-		echo "<p>".$this->description."</p>\n";
+		echo "<p>".$this->descriptionAffichage."</p>\n";
 		echo "<img src='" .$this->image."'  width='150' height='150' >" ;
 		echo "<br><strong>".$this->prix."€uros</strong>\n";
 	}
@@ -101,24 +105,36 @@ class Immobilier extends AnnonceSQL
 	} 
 
 	public function parsePOST()
-	
 	{
 		parent::parsePOST();
 		$this->surface		= $this->getPOSTValue( 'surface');
 		$this->nbrPieces	= $this->getPOSTValue( 'nbrPieces');
-		$this->description .= "<br>".$this->surface." m2<br>".$this->nbrPieces." pièces";	
+		$this->descriptionAffichage .= "<br>".$this->surface." m2<br>".$this->nbrPieces." pièces";	
 	}
 
 
 	public function form( $cible )
 	{
 		parent::form( $cible );
-
-		$this->strFormField .= $this->createField( "surface du bien", "surface" );    
-		$this->strFormField .= $this->createField( "nombre de pièces", "nbrPieces" );    
-
+		$this->strFormField .= $this->createField( "surface du bien", "surface" ); 
+		$this->strFormField .= $this->createField( "nombre de pièces", "nbrPieces" );
 		return $this->strFormHead.$this->strFormField.$this->strFormEnd; 
 	}
+
+	public function readData( $array_kv )
+	{
+		parent::readData( $array_kv );
+		$this->surface 		= $array_kv[ 'surface' ];
+		$this->nbrPieces 	= $array_kv[ 'nbrpieces'  ]; 
+		$this->descriptionAffichage .= "<br>".$this->surface." m2<br>".$this->nbrPieces." pièces";	
+	}
+
+	public function save()
+	{
+		$req = "INSERT INTO xavier.annonces ( titre, description, image, prix, surface, nbrpieces ) VALUES ( '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix.", ".$this->surface.", ".$this->nbrPieces."  );";
+		return executeSQL( $req );
+	}
+
 }
 
 
@@ -181,7 +197,7 @@ function executeSQL( $req )
 
 		//echo $req."<br>";
 		$result = $conn->query( $req );
-			
+
 		$conn->close();
 	}
 	return $result;

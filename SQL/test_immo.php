@@ -10,6 +10,7 @@ if ( isset($_POST['ok']) )
 {
     $newAnnonce->parsePost();
     $newAnnonce->save();
+
     header ('location: affiche_annonces.php');
 }
 echo $newAnnonce->form( 'test_immo.php');

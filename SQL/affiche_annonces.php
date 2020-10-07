@@ -8,9 +8,9 @@ $result = executeSQL( $req );
 
 while ( $row = $result->fetch_assoc() )
 {	
-
 	$anonce = new annonceSQL();
-	
+	$anonce = new Immobilier();
+
 	$anonce->readData( $row );
 	
 	echo $anonce->show();	
