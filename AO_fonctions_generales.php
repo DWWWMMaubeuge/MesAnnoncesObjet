@@ -1,5 +1,17 @@
 <?php
 
+<<<<<<< HEAD
+
+
+
+
+class annonce
+{
+	public  $titre;
+	public  $description;
+	public  $image;
+	public  $prix;
+=======
 class Annonce 
 {
 <<<<<<< HEAD
@@ -30,12 +42,71 @@ class Annonce
 			$this->description = $_POST['description'];
 
 		if ( isset($_POST['image']) ) 
+<<<<<<< HEAD
 			$this->image = $_POST['image'];
+=======
+			$this->image= $_POST['image'];
+>>>>>>> acd18c56317656400427eb4aaa1ef8797d6fb5de
 
 		if ( isset($_POST['prix']) ) 
 			$this->prix = $_POST['prix'];
 	} 
 
+<<<<<<< HEAD
+=======
+
+	public function save()
+	{
+		GLOBAL $annonce; 
+		array_push( $annonce, $this);
+		$_SESSION[ 'annonce' ] = $annonce;
+	}
+
+
+	public function affiche()
+	{
+		return "maison : ".$this->maison." voiture: ".$this->voiture." bateau : ".$this->bateau."<br>\n" ;
+	}
+
+	public function checkPwd()
+	{
+		$users = $_SESSION[ 'annonce' ];
+		foreach ($annonce as $annonce ) 
+		{
+			if ( $annonce->maison == $this->maison && $annonce->voiture== $this->voiture )
+				return true;
+		}
+		return false;
+	}
+
+	public function form()
+	{
+		$str  = '';
+		$str .= '<h2>inscription</h2><br>';    
+		$str .= '<div class="login">    ';
+		$str .= '<form id="login" method="POST" action="inscription.php"> ';   
+		$str .= '<label><b>User Name     ';
+		$str .= '</b>    ';
+		$str .= '</label>  ';  
+		$str .= '<input type="text" name="login" id="Uname" placeholder="Username"> ';    
+		$str .= '<br><br>    ';
+		$str .= '<label><b>User Mail';     
+		$str .= '</b>    ';
+		$str .= '</label>    ';
+		$str .= '<input type="mail" name="mail" id="mail" placeholder="mail">    ';
+		$str .= '<br><br>    ';
+		$str .= '<label><b>User Dep';     
+		$str .= '</b>    ';
+		$str .= '</label>    ';
+		$str .= '<input type="text" name="dep" id="dep" placeholder="departement"> ';   
+		$str .= '<br><br>    ';
+		$str .= '<label><b>Password';     
+		$str .= '</b>    ';
+		$str .= '</label>    ';
+		$str .= '<input type="Password" name="pwd" id="Pass" placeholder="Password"> ';   
+		$str .= '<br><br>    ';
+		$str .= '<input type="submit" name="ok" id="log" value="Log In Here">       ';
+>>>>>>> acd18c56317656400427eb4aaa1ef8797d6fb5de
 =======
 		$this->title 		= $this->getPOSTValue( 'title');
 		$this->description	= $this->getPOSTValue( 'description');
@@ -132,8 +203,11 @@ class Annonce
 		return $str; 
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> acd18c56317656400427eb4aaa1ef8797d6fb5de
 =======
 }
 
@@ -170,7 +244,11 @@ class Immobilier extends Annonce
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> cecb566101f453b26ebe9c593783fe2328c34244
+>>>>>>> acd18c56317656400427eb4aaa1ef8797d6fb5de
 
 
 
@@ -193,6 +271,8 @@ class Immobilier extends Annonce
 
 
 
+<<<<<<< HEAD
+=======
 
 
 
@@ -273,4 +353,5 @@ function gestionSession()
 	}	
 }
 
+>>>>>>> cecb566101f453b26ebe9c593783fe2328c34244
 ?>

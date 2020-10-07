@@ -1,23 +1,22 @@
 <?php
 
-class Annonce 
+class AnnonceSQL
 {
 	public 		$titre;
 	public 		$description;
 	public  	$image;
 	public  	$prix;
-<<<<<<< HEAD
 
 	public 		$strFormHead;
 	public 		$strFormField;
 	public 		$strFormEnd;
-=======
-    
+
+	public $sqlRequest;
+
 
 	public function __construct( )
 	{
 	} 
->>>>>>> master
 
 	public function parsePost( )
 	{
@@ -25,6 +24,14 @@ class Annonce
 		$this->titre 		= $this->getPOSTValue( 'titre');
 		$this->image 		= $this->getPOSTValue( 'image');
 		$this->prix 		= $this->getPOSTValue( 'prix' ); 
+	} 
+
+	public function readData( $array_kv )
+	{
+		$this->description	= $array_kv[ 'description' ];
+		$this->titre 		= $array_kv[ 'titre' ];
+		$this->image 		= $array_kv[ 'image' ];
+		$this->prix 		= $array_kv[ 'prix'  ]; 
 	} 
 
 	protected function getPOSTValue( $key )
@@ -37,11 +44,10 @@ class Annonce
 
 	public function save()
 	{
-		GLOBAL $annonces; 
-		array_push( $annonces, $this);
-		$_SESSION[ 'annonces' ] = $annonces;
+		$req = "INSERT INTO xavier.annonces ( titre, description, image, prix ) VALUES ( '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix." )";
+		return executeSQL( $req );
 	}
-    
+
 
 	public function show()
 	{
@@ -83,25 +89,16 @@ class Annonce
 
 
 
-class Immobilier extends Annonce
+class Immobilier extends AnnonceSQL
 {
 	private $surface;
 	private $nbrPieces;
 
-	
-
 	public function __construct( )
-	
 	{
-<<<<<<< HEAD
 		//$this->surface = 65;
 		//$this->nbrPieces = 4;
 	} 
-=======
-		$this->surface = 65;
-		$this->nbrPieces = 4;
-	}  
->>>>>>> c5b44a3ee6c88a590de341f88ea8cb1a0c73d76d
 
 	public function parsePOST()
 	
@@ -122,76 +119,75 @@ class Immobilier extends Annonce
 
 		return $this->strFormHead.$this->strFormField.$this->strFormEnd; 
 	}
-
-<<<<<<< HEAD
-=======
-	public function show()
-	{
-
-	   
-       parent::show();
-		echo "<p>".$this->surface." m2</p>\n";
-		echo "<p>".$this->nbrPieces." pièces</p>\n";
-
-
-
-
-	}
->>>>>>> c5b44a3ee6c88a590de341f88ea8cb1a0c73d76d
 }
 
-class Voiture extends Annonce
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function executeSQL( $req )
 {
-	private $marque;
-	private $model;
-	private $kilometrage;
-	private $boite_de_vitesse;
-	private $annees;
-	private $puissanceFiscale;
-	private $puissanceReelle;
-	private $carburant;
-	private $porte;
-	private $places;
-	private $mise_en_circulation;
-
-	public function parsePOST()
+	$result = false;
+	if ( $req != "" )
 	{
-		parent::parsePOST();
-		$this->marque		= $this->getPOSTValue( 'marque');
-		$this->model	= $this->getPOSTValue( 'model');
-		$this->kilometrage	= $this->getPOSTValue( 'kilometrage');
-		$this->boite_de_vitesse	= $this->getPOSTValue( 'boite_de_vitesse');
-		$this->annees	= $this->getPOSTValue( 'annees');
-		$this->puissanceFiscale	= $this->getPOSTValue( 'puissanceFiscale');
-		$this->puissanceReelle	= $this->getPOSTValue( 'puissanceReelle');
-		$this->carburant	= $this->getPOSTValue( 'carburant');
-		$this->porte	= $this->getPOSTValue( 'porte');
-		$this->places	= $this->getPOSTValue( 'places');
-		$this->mise_en_circulation	= $this->getPOSTValue( 'mise_en_circulation');
-		$this->description .= "<br>".$this->marque."<br>".$this->model."<br>".$this->kilometrage."km<br>".$this->boite_de_vitesse." <br>".$this->annees." <br>".$this->puissanceFiscale."CV<br>".$this->puissanceReelle."Ch din<br>".$this->carburant." <br>".$this->porte." <br>".$this->places." <br>".$this->mise_en_circulation." <br>";	
+		$servername = "10.115.49.73";
+		$username = "xavier";
+		$password = "xavier";
+
+		// Create connection
+		$conn = new mysqli($servername, $username, $password);
+
+		// Check connection
+		if ($conn->connect_error) 
+		{
+		  die("Connection failed: " . $conn->connect_error);
+		}
+
+
+		//echo $req."<br>";
+		$result = $conn->query( $req );
+			
+		$conn->close();
 	}
-
-
-	public function form( $cible )
-	{
-		parent::form( $cible );
-
-		$this->strFormField .= $this->createField( "marque", "marque" );
-		$this->strFormField .= $this->createField( "model", "model" );
-		$this->strFormField .= $this->createField( "kilometrage du bien", "kilometrage" );
-		$this->strFormField .= $this->createField( "boite de vitesse", "boite_de_vitesse" );
-		$this->strFormField .= $this->createField( "annees du bien", "annees" );
-		$this->strFormField .= $this->createField( "puissanceFiscale du bien", "puissanceFiscale" );
-		$this->strFormField .= $this->createField( "puissanceReelle", "puissanceReelle" );
-		$this->strFormField .= $this->createField( "carburant", "carburant" );
-		$this->strFormField .= $this->createField( "porte", "porte" );
-		$this->strFormField .= $this->createField( "places", "places" );
-		$this->strFormField .= $this->createField( "mise en circulation", "mise_en_circulation" );
-
-		return $this->strFormHead.$this->strFormField.$this->strFormEnd; 
-	}
-
+	return $result;
 }
+
+
 
 function setHeaderNoCache()
 {
