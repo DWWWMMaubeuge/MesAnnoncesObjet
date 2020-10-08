@@ -13,4 +13,11 @@ if ( isset($_POST['ok']) )
     header ('location: affiche_annonces.php');
 }
 echo $newAnnonce->form( 'test_immo.php');
+
+
+public function save()
+	{
+		$req = "INSERT INTO nicolas.annonces ( titre, description, image, prix ) VALUES ( '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix." )";
+		return executeSQL( $req );
+	}
 ?>
