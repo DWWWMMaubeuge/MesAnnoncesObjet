@@ -49,7 +49,7 @@ class AnnonceSQL
 
 	public function save()
 	{
-		$req = "INSERT INTO xavier.annonces ( titre, description, image, prix ) VALUES ( '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix." )";
+		$req = "INSERT INTO xavier.annonces ( typeannonce, titre, description, image, prix ) VALUES ( 'ANN', '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix." );";
 		return executeSQL( $req );
 	}
 
@@ -126,18 +126,262 @@ class Immobilier extends AnnonceSQL
 		parent::readData( $array_kv );
 		$this->surface 		= $array_kv[ 'surface' ];
 		$this->nbrPieces 	= $array_kv[ 'nbrpieces'  ]; 
-		$this->descriptionAffichage .= "<br>".$this->surface." m2<br>".$this->nbrPieces." pièces";	
+		$this->descriptionAffichage .= "<br>".$this->surface." m2<br>".$this->nbrPieces." pièces";	  
 	}
 
 	public function save()
 	{
-		$req = "INSERT INTO xavier.annonces ( titre, description, image, prix, surface, nbrpieces ) VALUES ( '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix.", ".$this->surface.", ".$this->nbrPieces."  );";
+		$req = "INSERT INTO xavier.annonces ( typeannonce, titre, description, image, prix, surface, nbrpieces ) VALUES ( 'IMO', '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix.", ".$this->surface.", ".$this->nbrPieces."  );";
 		return executeSQL( $req );
 	}
 
 }
 
 
+class Voiture extends AnnonceSQL
+{
+	private $puissance;
+	private $annee;
+	private $marque;
+
+	public function __construct( )
+	{
+		//$this->surface = 65;
+		//$this->nbrPieces = 4;
+	} 
+
+	public function parsePOST()
+	{
+		parent::parsePOST();
+		$this->puissance		= $this->getPOSTValue( 'puissance');
+		$this->annee			= $this->getPOSTValue( 'annee');
+		$this->marque			= $this->getPOSTValue( 'marque_voiture');
+		$this->descriptionAffichage .= "<br>".$this->marque."<br>".$this->puissance." CV<br>".$this->annee."<br>";	
+	}
+
+
+	public function form( $cible )
+	{
+		parent::form( $cible );
+		$req = "SELECT * FROM xavier.marque_voiture;"; 
+		$result = executeSQL( $req );
+
+		/*
+		$radioButton = "";
+		while ( $row = $result->fetch_assoc() )
+		{	
+			$radioButton .= "<input type=\"radio\" id=\"".$row[ 'id' ]."\" name=\"marque_voiture\" value=\"".$row[ 'nom' ]."\">\n";
+			$radioButton .= " <label for=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</label><br>\n";
+		}
+		*/
+
+		$comboBox = "<select name=\"marque_voiture\" id=\"cars\">\n";
+		while ( $row = $result->fetch_assoc() )
+		{	
+			$comboBox .= "<option value=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</option>\n";
+
+		}
+		$comboBox .= "</select><br>\n";
+
+
+
+
+		//$this->strFormField .= $this->createField( "marque", "marque" ); 
+		$this->strFormField .= $comboBox; 
+		$this->strFormField .= $this->createField( "puissance (CV)", "puissance" );
+		$this->strFormField .= $this->createField( "année mise en circulation", "annee" );
+		return $this->strFormHead.$this->strFormField.$this->strFormEnd; 
+	}
+
+	public function readData( $array_kv )
+	{
+		parent::readData( $array_kv );
+		$this->puissance 		= $array_kv[ 'puissance' ];
+		$this->annee 			= $array_kv[ 'annee'  ]; 
+		$this->marque 			= $array_kv[ 'marque'  ]; 
+		$this->descriptionAffichage .= "<br>".$this->marque."<br>".$this->puissance." CV<br>".$this->annee."<br>";	
+	}
+
+	public function save()
+	{
+		$req = "INSERT INTO xavier.annonces ( typeannonce, titre, description, image, prix, marque, puissance, annee ) VALUES ( 'CAR', '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix.", '".$this->marque."', ".$this->puissance." , ".$this->annee." );";	
+		return executeSQL( $req );
+	}
+}
+
+
+
+class Voilier extends AnnonceSQL
+{
+	private $longueur;
+	private $nbrMats;
+	private $marque;
+	private $typeVoilier;
+
+	public function __construct( )
+	{
+		//$this->surface = 65;
+		//$this->nbrPieces = 4;
+	} 
+
+	public function parsePOST()
+	{
+		parent::parsePOST();
+		$this->longueur				= $this->getPOSTValue( 'longueur');
+		$this->nbrMats				= $this->getPOSTValue( 'nbrMats');
+		$this->annee				= $this->getPOSTValue( 'annee');
+		$this->marque				= $this->getPOSTValue( 'marque_voilier');
+		$this->type_voilier			= $this->getPOSTValue( 'type_voilier');
+		$this->descriptionAffichage .= "<br>".$this->marque."<br>".$this->longueur." CV<br>".$this->nbrMats." mats<br>".$this->type_voilier."<br>".$this->annee."<br>";	
+	}
+
+
+	public function form( $cible )
+	{
+		parent::form( $cible );
+		$req = "SELECT * FROM xavier.marque_bateau;"; 
+		$result = executeSQL( $req );
+
+		/*
+		$radioButton = "";
+		while ( $row = $result->fetch_assoc() )
+		{	
+			$radioButton .= "<input type=\"radio\" id=\"".$row[ 'id' ]."\" name=\"marque_voiture\" value=\"".$row[ 'nom' ]."\">\n";
+			$radioButton .= " <label for=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</label><br>\n";
+		}
+		*/
+
+		$comboBoxMarque = "<select name=\"marque_voilier\" id=\"cars\">\n";
+		while ( $row = $result->fetch_assoc() )
+		{	
+			$comboBoxMarque .= "<option value=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</option>\n";
+
+		}
+		$comboBoxMarque .= "</select><br>\n";
+
+
+		$req = "SELECT * FROM xavier.type_bateau;"; 
+		$result = executeSQL( $req );
+
+
+		$comboBoxType = "<select name=\"type_voilier\" >\n";
+		while ( $row = $result->fetch_assoc() )
+		{	
+			$comboBoxType .= "<option value=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</option>\n";
+
+		}
+		$comboBoxType .= "</select><br>\n";
+
+
+		//$this->strFormField .= $this->createField( "marque", "marque" ); 
+		$this->strFormField .= $comboBoxMarque; 
+		$this->strFormField .= $comboBoxType; 
+		$this->strFormField .= $this->createField( "longueur", "longueur" );
+		$this->strFormField .= $this->createField( "nombre de mats", "nbrMats" );
+		$this->strFormField .= $this->createField( "année mise à l'eau", "annee" );
+		return $this->strFormHead.$this->strFormField.$this->strFormEnd; 
+	}
+
+	public function readData( $array_kv )
+	{
+		parent::readData( $array_kv );
+		$this->longueur 		= $array_kv[ 'longueur' ];
+		$this->type_voilier 	= $array_kv[ 'type_voilier' ];
+		$this->nbrMats 			= $array_kv[ 'nbrmats' ];
+		$this->annee 			= $array_kv[ 'annee'  ]; 
+		$this->marque 			= $array_kv[ 'marque'  ]; 
+		$this->descriptionAffichage .= "<br>".$this->marque."<br>".$this->longueur." CV<br>".$this->nbrMats." mats<br>".$this->type_voilier."<br>".$this->annee."<br>";	
+	}
+
+	public function save()
+	{
+		$req = "INSERT INTO xavier.annonces ( typeannonce, titre, description, image, prix, marque, longueur, type_bateau, nbrmats, annee ) VALUES ( 'VOI', '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix.", '".$this->marque."', ".$this->longueur." ,'".$this->type_voilier."', ".$this->nbrMats.", ".$this->annee." );";	
+		return executeSQL( $req );
+	}
+}
+
+
+
+
+
+
+class Animaux extends AnnonceSQL
+{
+	private $race;  
+	private $genre;
+
+	public function __construct( )
+	{
+		//$this->surface = 65;
+		//$this->nbrPieces = 4;
+	} 
+
+	public function parsePOST()
+	{
+		parent::parsePOST();
+		$this->longueur				= $this->getPOSTValue( 'longueur');
+		$this->nbrMats				= $this->getPOSTValue( 'nbrMats');
+		$this->annee				= $this->getPOSTValue( 'annee');
+		$this->marque				= $this->getPOSTValue( 'marque_voilier');
+		$this->type_voilier			= $this->getPOSTValue( 'type_voilier');
+		$this->descriptionAffichage .= "<br>".$this->marque."<br>".$this->longueur." CV<br>".$this->nbrMats." mats<br>".$this->type_voilier."<br>".$this->annee."<br>";	
+	}
+
+
+	public function form( $cible )
+	{
+		parent::form( $cible );
+		$req = "SELECT * FROM xavier.marque_bateau;"; 
+		$result = executeSQL( $req );
+
+		$comboBoxMarque = "<select name=\"marque_voilier\" id=\"cars\">\n";
+		while ( $row = $result->fetch_assoc() )
+		{	
+			$comboBoxMarque .= "<option value=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</option>\n";
+
+		}
+		$comboBoxMarque .= "</select><br>\n";
+
+
+		$req = "SELECT * FROM xavier.type_bateau;"; 
+		$result = executeSQL( $req );
+
+
+		$comboBoxType = "<select name=\"type_voilier\" >\n";
+		while ( $row = $result->fetch_assoc() )
+		{	
+			$comboBoxType .= "<option value=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</option>\n";
+
+		}
+		$comboBoxType .= "</select><br>\n";
+
+
+		//$this->strFormField .= $this->createField( "marque", "marque" ); 
+		$this->strFormField .= $comboBoxMarque; 
+		$this->strFormField .= $comboBoxType; 
+		$this->strFormField .= $this->createField( "longueur", "longueur" );
+		$this->strFormField .= $this->createField( "nombre de mats", "nbrMats" );
+		$this->strFormField .= $this->createField( "année mise à l'eau", "annee" );
+		return $this->strFormHead.$this->strFormField.$this->strFormEnd; 
+	}
+
+	public function readData( $array_kv )
+	{
+		parent::readData( $array_kv );
+		$this->longueur 		= $array_kv[ 'longueur' ];
+		$this->type_voilier 	= $array_kv[ 'type_voilier' ];
+		$this->nbrMats 			= $array_kv[ 'nbrmats' ];
+		$this->annee 			= $array_kv[ 'annee'  ]; 
+		$this->marque 			= $array_kv[ 'marque'  ]; 
+		$this->descriptionAffichage .= "<br>".$this->marque."<br>".$this->longueur." CV<br>".$this->nbrMats." mats<br>".$this->type_voilier."<br>".$this->annee."<br>";	
+	}
+
+	public function save()
+	{
+		$req = "INSERT INTO xavier.annonces ( typeannonce, titre, description, image, prix, marque, longueur, type_bateau, nbrmats, annee ) VALUES ( 'VOI', '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix.", '".$this->marque."', ".$this->longueur." ,'".$this->type_voilier."', ".$this->nbrMats.", ".$this->annee." );";	
+		return executeSQL( $req );
+	}
+}
 
 
 
@@ -195,8 +439,12 @@ function executeSQL( $req )
 		}
 
 
-		//echo $req."<br>";
+		echo $req."<br>";
 		$result = $conn->query( $req );
+		if ($conn->error) 
+		{
+		  die("erreur insert: " . $conn->error);
+		}
 
 		$conn->close();
 	}
