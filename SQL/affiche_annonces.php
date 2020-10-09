@@ -3,19 +3,18 @@ include ( 'AO_fonctions_generalesSQL.php');
 
 setHeaderNoCache();
 
-$req = "SELECT * FROM xavier.annonces;"; 
+$req = "SELECT * FROM fatima.annonces;"; 
 $result = executeSQL( $req );
 
 while ( $row = $result->fetch_assoc() )
 {	
 
-	$anonce = new annonceSQL();
+	$anonce = new  AnnonceSQL();
 	
 	$anonce->readData( $row );
 	
 	echo $anonce->show();	
 }
-
 
 ?>
 <br>

@@ -4,7 +4,7 @@ include ( 'AO_fonctions_generalesSQL.php');
 setHeaderNoCache();
 gestionSession();
 
-$newAnnonce = new AnnonceSQL();
+$newAnnonce = new Immobilier();
 
 if ( isset($_POST['ok']) )
 {

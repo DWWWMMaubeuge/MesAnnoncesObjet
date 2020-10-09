@@ -119,6 +119,24 @@ class Immobilier extends AnnonceSQL
 
 		return $this->strFormHead.$this->strFormField.$this->strFormEnd; 
 	}
+
+	public function readData($array_kv)
+	{
+		parent::readData($array_kv);
+		$this->surface		= $array_kv[ 'surface' ];
+		$this->nbrPieces	= $array_kv[ 'nbrPieces'  ];
+		$this->description .= "<br>".$this->surface." m2<br>".$this->nbrPieces." pièces";	 
+	}
+
+
+	public function save()
+	{
+		//parent::save();
+		$req = "INSERT INTO fatima.annonces ( titre, description, image, prix,surface,nbrPieces ) VALUES ( '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix.",".$this->surface.",".$this->nbrPieces." )";
+		return executeSQL( $req );
+	}
+
+
 }
 
 
@@ -166,8 +184,8 @@ function executeSQL( $req )
 	if ( $req != "" )
 	{
 		$servername = "10.115.49.73";
-		$username = "xavier";
-		$password = "xavier";
+		$username = "fatima";
+		$password = "fatima";
 
 		// Create connection
 		$conn = new mysqli($servername, $username, $password);

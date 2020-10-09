@@ -5,8 +5,8 @@
 function SQLQuerry( $req )
 {
     $servername = "10.115.49.73";
-    $username = "xavier";
-    $password = "xavier";
+    $username = "fatima";
+    $password = "fatima";
 
     // Create connection
     $conn = new mysqli($servername, $username, $password);
@@ -31,6 +31,7 @@ function SQLQuerry( $req )
     
     //if ( isset( $_POST["Email"])  )
       $email = $_POST["Email"];
+      
     
     if ( $name == "" )
     {
