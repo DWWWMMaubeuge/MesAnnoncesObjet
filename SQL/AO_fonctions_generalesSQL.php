@@ -308,8 +308,7 @@ class Voilier extends AnnonceSQL
 class Animaux extends AnnonceSQL
 {
 	private $race;  
-	private $genre;
-	private $couleur;
+	private $espèce;
 
 	public function __construct( )
 	{
@@ -331,13 +330,25 @@ class Animaux extends AnnonceSQL
 	public function form( $cible )
 	{
 		parent::form( $cible );
-		$req = "SELECT * FROM nicolas.race_animal;"; 
+		$req = "SELECT * FROM xavier.espece_animale;"; 
 		$result = executeSQL( $req );
+		$comboBox = "<select name=\"espece\">\n";
+		while ( $row = $result->fetch_assoc() )
+			$comboBox .= "<option value=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</option>\n";
+		$comboBox .= "</select><br>\n";
+		$this->strFormField .= $comboBox; 
 
+		$req = "SELECT * FROM xavier.race_animale;"; 
+		$result = executeSQL( $req );
+		$comboBox = "<select name=\"race\" >\n";
+		while ( $row = $result->fetch_assoc() )
+			$comboBox .= "<option value=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</option>\n";
+		$comboBox .= "</select><br>\n";
+		$this->strFormField .= $comboBox; 
 		
-		$this->strFormField .= $this->createField( "race", "race" );
-		$this->strFormField .= $this->createField( "genre", "genre" );
-		$this->strFormField .= $this->createField( "couleur du bordel", "couleur" );
+
+		//$this->strFormField .= $this->createField( "marque", "marque" ); 
+		$this->strFormField .= $this->createField( "année de naissance", "annee" );
 		return $this->strFormHead.$this->strFormField.$this->strFormEnd; 
 	}
 
