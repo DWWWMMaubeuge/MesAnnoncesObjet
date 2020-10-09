@@ -4,9 +4,6 @@ include ( 'AO_fonctions_generalesSQL.php');
 setHeaderNoCache();
 gestionSession();
 
-<<<<<<< HEAD
-$newAnnonce = new Immobilier();
-=======
 /*
 <form action="saisie_annonce.php" > 
 <input type="radio" id="1" name="type_annonce" value="ANN">
@@ -32,15 +29,14 @@ $newAnnonce = new Immobilier();
 <br> 
 
 <?php
-$newAnnonce = new AnnonceSQL();
->>>>>>> master
+$newAnnonce = new Immobilier();
 
 if ( isset($_POST['ok']) )
 {
     $newAnnonce->parsePost();
     $newAnnonce->save();
 
-    //header ('location: affiche_annonces.php');
+    header ('location: affiche_annonces.php');
 }
-echo $newAnnonce->form( 'saisie_annonce.php');
+echo $newAnnonce->form( 'saisie_annonce_immo.php');
 ?>
