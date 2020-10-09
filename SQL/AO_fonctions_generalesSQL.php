@@ -308,7 +308,7 @@ class Voilier extends AnnonceSQL
 class Animaux extends AnnonceSQL
 {
 	private $race;  
-	private $genre;
+	private $espèce;
 
 	public function __construct( )
 	{
@@ -331,37 +331,25 @@ class Animaux extends AnnonceSQL
 	public function form( $cible )
 	{
 		parent::form( $cible );
-		$req = "SELECT * FROM xavier.marque_bateau;"; 
+		$req = "SELECT * FROM xavier.espece_animale;"; 
 		$result = executeSQL( $req );
-
-		$comboBoxMarque = "<select name=\"marque_voilier\" id=\"cars\">\n";
+		$comboBox = "<select name=\"espece\">\n";
 		while ( $row = $result->fetch_assoc() )
-		{	
-			$comboBoxMarque .= "<option value=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</option>\n";
+			$comboBox .= "<option value=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</option>\n";
+		$comboBox .= "</select><br>\n";
+		$this->strFormField .= $comboBox; 
 
-		}
-		$comboBoxMarque .= "</select><br>\n";
-
-
-		$req = "SELECT * FROM xavier.type_bateau;"; 
+		$req = "SELECT * FROM xavier.race_animale;"; 
 		$result = executeSQL( $req );
-
-
-		$comboBoxType = "<select name=\"type_voilier\" >\n";
+		$comboBox = "<select name=\"race\" >\n";
 		while ( $row = $result->fetch_assoc() )
-		{	
-			$comboBoxType .= "<option value=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</option>\n";
-
-		}
-		$comboBoxType .= "</select><br>\n";
-
+			$comboBox .= "<option value=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</option>\n";
+		$comboBox .= "</select><br>\n";
+		$this->strFormField .= $comboBox; 
+		
 
 		//$this->strFormField .= $this->createField( "marque", "marque" ); 
-		$this->strFormField .= $comboBoxMarque; 
-		$this->strFormField .= $comboBoxType; 
-		$this->strFormField .= $this->createField( "longueur", "longueur" );
-		$this->strFormField .= $this->createField( "nombre de mats", "nbrMats" );
-		$this->strFormField .= $this->createField( "année mise à l'eau", "annee" );
+		$this->strFormField .= $this->createField( "année de naissance", "annee" );
 		return $this->strFormHead.$this->strFormField.$this->strFormEnd; 
 	}
 
