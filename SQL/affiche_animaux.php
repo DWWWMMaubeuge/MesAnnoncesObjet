@@ -19,8 +19,6 @@ while ( $row = $result->fetch_assoc() )
 		$anonce = new Voiture();
 	else if ( $row[ 'typeannonce' ] == 'VOI')
 		$anonce = new Voilier();
-	else if ($row['typeannonce'] == 'ANI')
-		$annonce = new Animaux();
 	else
 		$anonce = new AnnonceSQL();
 

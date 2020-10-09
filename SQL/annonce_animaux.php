@@ -26,22 +26,21 @@ gestionSession();
 <a href="saisie_annonce_immo.php" >Immobilier</a> 
 <br> 
 <a href="saisie_annonce_voiture.php" >Voiture</a> 
-<br>
+<br> 
 <a href="saisie_annonce_voilier.php" >Voilier</a> 
 <br>
-<a href="annonce_animaux.php" >Animaux</a> 
-<br>
-
+<a href="annonce_animaux.php">Animaux</a> 
 
 <?php
-$newAnnonce = new AnnonceSQL();
+$newAnnonce = new Animaux();
 
 if ( isset($_POST['ok']) )
 {
     $newAnnonce->parsePost();
     $newAnnonce->save();
 
-    //header ('location: affiche_annonces.php');
+    header ('location: affiche_annonces.php');
 }
-echo $newAnnonce->form( 'saisie_annonce.php');
+echo $newAnnonce->form( 'annonce_animaux.php');
 ?>
+	
