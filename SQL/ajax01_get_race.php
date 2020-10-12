@@ -36,8 +36,8 @@ $req = "select xavier.race_animale.nom from xavier.race_animale, xavier.espece_a
 //$req = "SELECT * FROM xavier.race_animale;"; 	
 $result = executeSQL( $req );
 $str ="";
-while ( $row = $result->fetch_assoc() )
-    $str .= $row[ 'nom' ]."<br>\n";
 
-echo $str;
+while ( $row = $result->fetch_assoc() )
+	$str .= "<option value=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</option>\n";
+	echo $str;
 ?>
