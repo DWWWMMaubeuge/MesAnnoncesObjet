@@ -163,30 +163,14 @@ class Voiture extends AnnonceSQL
 	public function form( $cible )
 	{
 		parent::form( $cible );
+		
 		$req = "SELECT * FROM xavier.marque_voiture;"; 
 		$result = executeSQL( $req );
-
-		/*
-		$radioButton = "";
-		while ( $row = $result->fetch_assoc() )
-		{	
-			$radioButton .= "<input type=\"radio\" id=\"".$row[ 'id' ]."\" name=\"marque_voiture\" value=\"".$row[ 'nom' ]."\">\n";
-			$radioButton .= " <label for=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</label><br>\n";
-		}
-		*/
-
 		$comboBox = "<select name=\"marque_voiture\" id=\"cars\">\n";
 		while ( $row = $result->fetch_assoc() )
-		{	
 			$comboBox .= "<option value=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</option>\n";
-
-		}
 		$comboBox .= "</select><br>\n";
 
-
-
-
-		//$this->strFormField .= $this->createField( "marque", "marque" ); 
 		$this->strFormField .= $comboBox; 
 		$this->strFormField .= $this->createField( "puissance (CV)", "puissance" );
 		$this->strFormField .= $this->createField( "année mise en circulation", "annee" );
@@ -239,37 +223,20 @@ class Voilier extends AnnonceSQL
 	public function form( $cible )
 	{
 		parent::form( $cible );
+
 		$req = "SELECT * FROM xavier.marque_bateau;"; 
 		$result = executeSQL( $req );
-
-		/*
-		$radioButton = "";
-		while ( $row = $result->fetch_assoc() )
-		{	
-			$radioButton .= "<input type=\"radio\" id=\"".$row[ 'id' ]."\" name=\"marque_voiture\" value=\"".$row[ 'nom' ]."\">\n";
-			$radioButton .= " <label for=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</label><br>\n";
-		}
-		*/
-
 		$comboBoxMarque = "<select name=\"marque_voilier\" id=\"cars\">\n";
 		while ( $row = $result->fetch_assoc() )
-		{	
 			$comboBoxMarque .= "<option value=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</option>\n";
-
-		}
 		$comboBoxMarque .= "</select><br>\n";
 
 
 		$req = "SELECT * FROM xavier.type_bateau;"; 
 		$result = executeSQL( $req );
-
-
 		$comboBoxType = "<select name=\"type_voilier\" >\n";
 		while ( $row = $result->fetch_assoc() )
-		{	
 			$comboBoxType .= "<option value=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</option>\n";
-
-		}
 		$comboBoxType .= "</select><br>\n";
 
 
@@ -308,8 +275,12 @@ class Voilier extends AnnonceSQL
 class Animaux extends AnnonceSQL
 {
 	private $race;  
+<<<<<<< HEAD
 	private $genre;
 	private $age;
+=======
+	private $espèce;
+>>>>>>> master
 
 	public function __construct( )
 	{
@@ -320,16 +291,24 @@ class Animaux extends AnnonceSQL
 	public function parsePOST()
 	{
 		parent::parsePOST();
+<<<<<<< HEAD
 		$this->race				    = $this->getPOSTValue( 'race_animaux');
 		$this->genre				= $this->getPOSTValue( 'genre_animaux');
 		$this->age				    = $this->getPOSTValue( 'age_animaux');
 		$this->descriptionAffichage .= "<br>".$this->race."<br>".$this->genre."<br>".$this->age."<br>";	
+=======
+		$this->race					= $this->getPOSTValue( 'race');
+		$this->espece				= $this->getPOSTValue( 'espece');
+		$this->annee				= $this->getPOSTValue( 'annee');
+		$this->descriptionAffichage .= "<br>".$this->marque."<br>".$this->longueur." CV<br>".$this->nbrMats." mats<br>".$this->type_voilier."<br>".$this->annee."<br>";	
+>>>>>>> master
 	}
 
 
 	public function form( $cible )
 	{
 		parent::form( $cible );
+<<<<<<< HEAD
 		
 		$req = "SELECT * FROM fatima.race_animaux;"; 
 		$result = executeSQL( $req );
@@ -372,21 +351,53 @@ class Animaux extends AnnonceSQL
 		$this->strFormField .= $comboBoxRace; 
 		$this->strFormField .= $comboBoxGenre; 
 		$this->strFormField .= $comboBoxAge;
+=======
+
+		$req = "SELECT * FROM xavier.espece_animale;"; 
+		$result = executeSQL( $req );
+		$comboBox = "<select name=\"espece\">\n";
+		while ( $row = $result->fetch_assoc() )
+			$comboBox .= "<option value=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</option>\n";
+		$comboBox .= "</select><br>\n";
+		$this->strFormField .= $comboBox; 
+
+		$req = "SELECT * FROM xavier.race_animale;"; 	
+		$result = executeSQL( $req );
+		$comboBox = "<select name=\"race\" >\n";
+		while ( $row = $result->fetch_assoc() )
+			$comboBox .= "<option value=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</option>\n";
+		$comboBox .= "</select><br>\n";
+		$this->strFormField .= $comboBox; 
+		
+
+		//$this->strFormField .= $this->createField( "marque", "marque" ); 
+		$this->strFormField .= $this->createField( "année de naissance", "annee" );
+>>>>>>> master
 		return $this->strFormHead.$this->strFormField.$this->strFormEnd; 
 	}
 
 	public function readData( $array_kv )
 	{
 		parent::readData( $array_kv );
+<<<<<<< HEAD
 		$this->race		 		= $array_kv[ 'race_animaux' ];
 		$this->genre		 	= $array_kv[ 'genre_animaux' ];
 		$this->age		 		= $array_kv[ 'age_animaux' ];
 		$this->descriptionAffichage .= "<br> genre :"." ".$this->genre."<br>"."race: ".$this->race."<br>".$this->age."mois <br>";	
+=======
+		$this->race 			= $array_kv[ 'race' ];
+		$this->espece 			= $array_kv[ 'espece' ];
+		$this->descriptionAffichage .= "<br>".$this->espece."<br>".$this->race."<br>".$this->annee."<br>";	
+>>>>>>> master
 	}
 
 	public function save()
 	{
+<<<<<<< HEAD
 		$req = "INSERT INTO fatima.annonces ( typeannonce, titre, description, image, prix, race_animaux, genre_animaux, age_animaux ) VALUES ( 'ANI', '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix.",'".$this->race."','".$this->genre."',".$this->age." );";	
+=======
+		$req = "INSERT INTO xavier.annonces ( typeannonce,  titre,  description, image,                                      prix,             race,            espece, annee ) VALUES                              ( 'ANI', '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix.", '".$this->race."', '".$this->espece."' , ".$this->annee." );";	
+>>>>>>> master
 		return executeSQL( $req );
 	}
 }
