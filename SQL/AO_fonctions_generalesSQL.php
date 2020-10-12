@@ -163,30 +163,18 @@ class Voiture extends AnnonceSQL
 	public function form( $cible )
 	{
 		parent::form( $cible );
+<<<<<<< HEAD
 		$req = "SELECT * FROM nicolas.marque_voiture;"; 
+=======
+		
+		$req = "SELECT * FROM xavier.marque_voiture;"; 
+>>>>>>> 2fd98b12b8dd13e486173ca1b17aae02b2d0ab7b
 		$result = executeSQL( $req );
-
-		/*
-		$radioButton = "";
-		while ( $row = $result->fetch_assoc() )
-		{	
-			$radioButton .= "<input type=\"radio\" id=\"".$row[ 'id' ]."\" name=\"marque_voiture\" value=\"".$row[ 'nom' ]."\">\n";
-			$radioButton .= " <label for=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</label><br>\n";
-		}
-		*/
-
 		$comboBox = "<select name=\"marque_voiture\" id=\"cars\">\n";
 		while ( $row = $result->fetch_assoc() )
-		{	
 			$comboBox .= "<option value=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</option>\n";
-
-		}
 		$comboBox .= "</select><br>\n";
 
-
-
-
-		//$this->strFormField .= $this->createField( "marque", "marque" ); 
 		$this->strFormField .= $comboBox; 
 		$this->strFormField .= $this->createField( "puissance (CV)", "puissance" );
 		$this->strFormField .= $this->createField( "année mise en circulation", "annee" );
@@ -239,37 +227,24 @@ class Voilier extends AnnonceSQL
 	public function form( $cible )
 	{
 		parent::form( $cible );
+<<<<<<< HEAD
 		$req = "SELECT * FROM nicolas.marque_bateau;"; 
+=======
+
+		$req = "SELECT * FROM xavier.marque_bateau;"; 
+>>>>>>> 2fd98b12b8dd13e486173ca1b17aae02b2d0ab7b
 		$result = executeSQL( $req );
-
-		/*
-		$radioButton = "";
-		while ( $row = $result->fetch_assoc() )
-		{	
-			$radioButton .= "<input type=\"radio\" id=\"".$row[ 'id' ]."\" name=\"marque_voiture\" value=\"".$row[ 'nom' ]."\">\n";
-			$radioButton .= " <label for=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</label><br>\n";
-		}
-		*/
-
 		$comboBoxMarque = "<select name=\"marque_voilier\" id=\"cars\">\n";
 		while ( $row = $result->fetch_assoc() )
-		{	
 			$comboBoxMarque .= "<option value=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</option>\n";
-
-		}
 		$comboBoxMarque .= "</select><br>\n";
 
 
 		$req = "SELECT * FROM nicolas.type_bateau;"; 
 		$result = executeSQL( $req );
-
-
 		$comboBoxType = "<select name=\"type_voilier\" >\n";
 		while ( $row = $result->fetch_assoc() )
-		{	
 			$comboBoxType .= "<option value=\"".$row[ 'nom' ]."\">".$row[ 'nom' ]."</option>\n";
-
-		}
 		$comboBoxType .= "</select><br>\n";
 
 
@@ -320,16 +295,23 @@ class Animaux extends AnnonceSQL
 	{
 		parent::parsePOST();
 		$this->race					= $this->getPOSTValue( 'race');
+<<<<<<< HEAD
 		$this->genre				= $this->getPOSTValue( 'genre');
 		$this->couleur				= $this->getPOSTValue( 'couleur');
 		
 		$this->descriptionAffichage .= "<br>".$this->race."<br>".$this->genre." <br>".$this->couleur." <br>";	
+=======
+		$this->espece				= $this->getPOSTValue( 'espece');
+		$this->annee				= $this->getPOSTValue( 'annee');
+		$this->descriptionAffichage .= "<br>".$this->marque."<br>".$this->longueur." CV<br>".$this->nbrMats." mats<br>".$this->type_voilier."<br>".$this->annee."<br>";	
+>>>>>>> 2fd98b12b8dd13e486173ca1b17aae02b2d0ab7b
 	}
 
 
 	public function form( $cible )
 	{
 		parent::form( $cible );
+
 		$req = "SELECT * FROM xavier.espece_animale;"; 
 		$result = executeSQL( $req );
 		$comboBox = "<select name=\"espece\">\n";
@@ -338,7 +320,7 @@ class Animaux extends AnnonceSQL
 		$comboBox .= "</select><br>\n";
 		$this->strFormField .= $comboBox; 
 
-		$req = "SELECT * FROM xavier.race_animale;"; 
+		$req = "SELECT * FROM xavier.race_animale;"; 	
 		$result = executeSQL( $req );
 		$comboBox = "<select name=\"race\" >\n";
 		while ( $row = $result->fetch_assoc() )
@@ -355,16 +337,26 @@ class Animaux extends AnnonceSQL
 	public function readData( $array_kv )
 	{
 		parent::readData( $array_kv );
+<<<<<<< HEAD
 		$this->race  	 		= $array_kv[ 'race' ];
 		
 		$this->genre 			= $array_kv[ 'genre' ];
 		$this->couleur 			= $array_kv[ 'couleur'  ]; 
 		$this->descriptionAffichage .= "<br>".$this->race."<br>".$this->genre." genre<br>".$this->couleur." <br>";	
+=======
+		$this->race 			= $array_kv[ 'race' ];
+		$this->espece 			= $array_kv[ 'espece' ];
+		$this->descriptionAffichage .= "<br>".$this->espece."<br>".$this->race."<br>".$this->annee."<br>";	
+>>>>>>> 2fd98b12b8dd13e486173ca1b17aae02b2d0ab7b
 	}
 
 	public function save()
 	{
+<<<<<<< HEAD
 		$req = "INSERT INTO nicolas.annonces ( typeannonce, titre, description, image, prix, race, genre, couleur ) VALUES ( 'ANI', '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix.", '".$this->race."', ".$this->genre." ,'".$this->couleur." );";	
+=======
+		$req = "INSERT INTO xavier.annonces ( typeannonce,  titre,  description, image,                                      prix,             race,            espece, annee ) VALUES                              ( 'ANI', '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix.", '".$this->race."', '".$this->espece."' , ".$this->annee." );";	
+>>>>>>> 2fd98b12b8dd13e486173ca1b17aae02b2d0ab7b
 		return executeSQL( $req );
 	}
 }

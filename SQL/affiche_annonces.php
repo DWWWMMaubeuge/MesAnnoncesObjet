@@ -19,8 +19,13 @@ while ( $row = $result->fetch_assoc() )
 		$anonce = new Voiture();
 	else if ( $row[ 'typeannonce' ] == 'VOI')
 		$anonce = new Voilier();
+<<<<<<< HEAD
 	else if ($row['typeannonce'] == 'ANI')
 		$annonce = new Animaux();
+=======
+	else if ( $row[ 'typeannonce' ] == 'ANI')
+		$anonce = new Animaux();
+>>>>>>> 2fd98b12b8dd13e486173ca1b17aae02b2d0ab7b
 	else
 		$anonce = new AnnonceSQL();
 
