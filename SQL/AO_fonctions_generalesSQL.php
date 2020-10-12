@@ -362,9 +362,21 @@ class Animaux extends AnnonceSQL
 
 
 
+function setMenuLink()
+{
+	$str =  "<a href=\"saisie_annonce.php\" >Annonce</a> ";
+	$str .=  "<br> ";
+	$str .=  "<a href=\"saisie_annonce_immo.php\" >Immobilier</a> ";
+	$str .=  "<br> ";
+	$str .=  "<a href=\"saisie_annonce_voiture.php\" >Voiture</a> ";
+	$str .=  "<br> ";
+	$str .=  "<a href=\"saisie_annonce_voilier.php\" >Voilier</a> ";
+	$str .=  "<br> ";
+	$str .=  "<a href=\"saisie_annonce_animaux.php\" >animaux</a> ";
+	$str .=  "<br>";
 
-
-
+	return $str;
+} 
 
 
 
@@ -390,7 +402,7 @@ function executeSQL( $req )
 		}
 
 
-		echo $req."<br>";
+		//echo $req."<br>";
 		$result = $conn->query( $req );
 		if ($conn->error) 
 		{
