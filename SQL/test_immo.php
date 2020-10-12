@@ -18,7 +18,7 @@ echo $newAnnonce->form( 'test_immo.php');
 
 public function save()
 	{
-		$req = "INSERT INTO nicolas.annonces ( titre, description, image, prix ) VALUES ( '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix." )";
+		$req = "INSERT INTO xavier.annonces ( titre, description, image, prix ) VALUES ( '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix." )";
 		return executeSQL( $req );
 	}
 ?>

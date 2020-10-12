@@ -49,7 +49,7 @@ class AnnonceSQL
 
 	public function save()
 	{
-		$req = "INSERT INTO nicolas.annonces ( typeannonce, titre, description, image, prix ) VALUES ( 'ANN', '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix." );";
+		$req = "INSERT INTO xavier.annonces ( typeannonce, titre, description, image, prix ) VALUES ( 'ANN', '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix." );";
 		return executeSQL( $req );
 	}
 
@@ -131,7 +131,7 @@ class Immobilier extends AnnonceSQL
 
 	public function save()
 	{
-		$req = "INSERT INTO nicolas.annonces ( typeannonce, titre, description, image, prix, surface, nbrpieces ) VALUES ( 'IMO', '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix.", ".$this->surface.", ".$this->nbrPieces."  );";
+		$req = "INSERT INTO xavier.annonces ( typeannonce, titre, description, image, prix, surface, nbrpieces ) VALUES ( 'IMO', '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix.", ".$this->surface.", ".$this->nbrPieces."  );";
 		return executeSQL( $req );
 	}
 
@@ -188,7 +188,7 @@ class Voiture extends AnnonceSQL
 
 	public function save()
 	{
-		$req = "INSERT INTO nicolas.annonces ( typeannonce, titre, description, image, prix, marque, puissance, annee ) VALUES ( 'CAR', '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix.", '".$this->marque."', ".$this->puissance." , ".$this->annee." );";	
+		$req = "INSERT INTO xavier.annonces ( typeannonce, titre, description, image, prix, marque, puissance, annee ) VALUES ( 'CAR', '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix.", '".$this->marque."', ".$this->puissance." , ".$this->annee." );";	
 		return executeSQL( $req );
 	}
 }
@@ -232,7 +232,7 @@ class Voilier extends AnnonceSQL
 		$comboBoxMarque .= "</select><br>\n";
 
 
-		$req = "SELECT * FROM nicolas.type_bateau;"; 
+		$req = "SELECT * FROM xavier.type_bateau;"; 
 		$result = executeSQL( $req );
 		$comboBoxType = "<select name=\"type_voilier\" >\n";
 		while ( $row = $result->fetch_assoc() )
@@ -262,7 +262,7 @@ class Voilier extends AnnonceSQL
 
 	public function save()
 	{
-		$req = "INSERT INTO nicolas.annonces ( typeannonce, titre, description, image, prix, marque, longueur, type_bateau, nbrmats, annee ) VALUES ( 'VOI', '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix.", '".$this->marque."', ".$this->longueur." ,'".$this->type_voilier."', ".$this->nbrMats.", ".$this->annee." );";	
+		$req = "INSERT INTO xavier.annonces ( typeannonce, titre, description, image, prix, marque, longueur, type_bateau, nbrmats, annee ) VALUES ( 'VOI', '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix.", '".$this->marque."', ".$this->longueur." ,'".$this->type_voilier."', ".$this->nbrMats.", ".$this->annee." );";	
 		return executeSQL( $req );
 	}
 }
@@ -377,8 +377,8 @@ function executeSQL( $req )
 	if ( $req != "" )
 	{
 		$servername = "10.115.49.73";
-		$username = "nicolas";
-		$password = "nicolas";
+		$username = "xavier";
+		$password = "xavier";
 
 		// Create connection
 		$conn = new mysqli($servername, $username, $password);
