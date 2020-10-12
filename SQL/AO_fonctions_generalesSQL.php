@@ -329,35 +329,11 @@ class Animaux extends AnnonceSQL
 
 	public function save()
 	{
-		$req = "INSERT INTO xavier.annonces ( typeannonce,  titre,  description, image,                                      prix,             race,            espece, annee ) VALUES                              ( 'ANI', '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix.", '".$this->race."', '".$this->espece."' , ".$this->annee." );";	
+		$req = "INSERT INTO xavier.annonces ( typeannonce,  titre,  description, image, prix,  race, espece, annee ) 
+		VALUES  ( 'ANI', '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix.", '".$this->race."', '".$this->espece."' , ".$this->annee." );";	
 		return executeSQL( $req );
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -436,6 +412,9 @@ function setHeaderNoCache()
 	echo "function goAccueil( )\n";
 	//echo "{ window.location.replace(\"http://localhost$__URL_local/affiche_grand.php?IDAnnonce=\"+id );}\n";
 	echo "{ window.location.href=\"http://localhost$__URL_local/accueil.php\" ;}\n";
+
+
+
 
 	echo "</script>\n";
 	echo "</head>\n";
