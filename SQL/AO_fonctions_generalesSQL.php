@@ -426,10 +426,6 @@ function setHeaderNoCache()
 	//echo "{ window.location.replace(\"http://localhost$__URL_local/affiche_grand.php?IDAnnonce=\"+id );}\n";
 	echo "{ window.location.href=\"http://localhost$__URL_local/accueil.php\" ;}\n";
 
-<<<<<<< HEAD
-
-	
-=======
 	echo "function loadRace( espece )\n"; 
 		echo "{";
 			echo "var xhttp = new XMLHttpRequest();\n";
@@ -443,7 +439,6 @@ function setHeaderNoCache()
 		echo "xhttp.open(\"GET\", \"http://localhost/Maubeuge/MesAnnoncesObjet/SQL/ajax01_get_race.php?espece=\"+espece, true);\n";
 		echo "xhttp.send();\n";
 	echo "}\n";
->>>>>>> 57ff4a4182a4abcca712ec90d134a36133a6f690
 	echo "</script>\n";
 	echo "</head>\n";
 	echo "<body>\n";
