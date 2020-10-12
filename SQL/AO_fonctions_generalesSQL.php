@@ -312,9 +312,13 @@ class Animaux extends AnnonceSQL
 
 		$req = "SELECT * FROM fatima.genre_animaux;"; 
 		$result = executeSQL( $req );
+<<<<<<< HEAD
 
 
 		$comboBoxGenre = "<select name=\"genre_animaux\" id=\"genre\">\n";
+=======
+		$comboBox = "<select name=\"espece\" onchange=\"loadRace(this.value);\">\n";
+>>>>>>> master
 		while ( $row = $result->fetch_assoc() )
 		{	
 			$comboBoxGenre .= "<option value=\"".$row[ 'genre' ]."\">".$row[ 'genre' ]."</option>\n";
@@ -324,9 +328,13 @@ class Animaux extends AnnonceSQL
 
 		$req = "SELECT * FROM fatima.age_animaux;"; 
 		$result = executeSQL( $req );
+<<<<<<< HEAD
 
 
 		$comboBoxAge = "<select name=\"age_animaux\" id=\"age\">\n";
+=======
+		$comboBox = "<select name=\"race\" id=\"selectRace\" >\n";
+>>>>>>> master
 		while ( $row = $result->fetch_assoc() )
 		{	
 			$comboBoxAge .= "<option value=\"".$row[ 'age' ]."\">".$row[ 'age' ]."</option>\n";
@@ -449,6 +457,19 @@ function setHeaderNoCache()
 	//echo "{ window.location.replace(\"http://localhost$__URL_local/affiche_grand.php?IDAnnonce=\"+id );}\n";
 	echo "{ window.location.href=\"http://localhost$__URL_local/accueil.php\" ;}\n";
 
+	echo "function loadRace( espece )\n"; 
+		echo "{";
+			echo "var xhttp = new XMLHttpRequest();\n";
+
+			echo "xhttp.onreadystatechange = function()\n"; 
+			echo "{\n";
+				echo "if (this.readyState == 4 && this.status == 200) {\n";
+					echo "document.getElementById(\"selectRace\").innerHTML = this.responseText;\n";
+			echo "}\n";
+		echo "};\n";
+		echo "xhttp.open(\"GET\", \"http://localhost/Maubeuge/MesAnnoncesObjet/SQL/ajax01_get_race.php?espece=\"+espece, true);\n";
+		echo "xhttp.send();\n";
+	echo "}\n";
 	echo "</script>\n";
 	echo "</head>\n";
 	echo "<body>\n";
