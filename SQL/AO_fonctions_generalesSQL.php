@@ -163,12 +163,8 @@ class Voiture extends AnnonceSQL
 	public function form( $cible )
 	{
 		parent::form( $cible );
-<<<<<<< HEAD
-		$req = "SELECT * FROM nicolas.marque_voiture;"; 
-=======
 		
 		$req = "SELECT * FROM xavier.marque_voiture;"; 
->>>>>>> 2fd98b12b8dd13e486173ca1b17aae02b2d0ab7b
 		$result = executeSQL( $req );
 		$comboBox = "<select name=\"marque_voiture\" id=\"cars\">\n";
 		while ( $row = $result->fetch_assoc() )
@@ -227,12 +223,8 @@ class Voilier extends AnnonceSQL
 	public function form( $cible )
 	{
 		parent::form( $cible );
-<<<<<<< HEAD
-		$req = "SELECT * FROM nicolas.marque_bateau;"; 
-=======
 
 		$req = "SELECT * FROM xavier.marque_bateau;"; 
->>>>>>> 2fd98b12b8dd13e486173ca1b17aae02b2d0ab7b
 		$result = executeSQL( $req );
 		$comboBoxMarque = "<select name=\"marque_voilier\" id=\"cars\">\n";
 		while ( $row = $result->fetch_assoc() )
@@ -295,16 +287,9 @@ class Animaux extends AnnonceSQL
 	{
 		parent::parsePOST();
 		$this->race					= $this->getPOSTValue( 'race');
-<<<<<<< HEAD
-		$this->genre				= $this->getPOSTValue( 'genre');
-		$this->couleur				= $this->getPOSTValue( 'couleur');
-		
-		$this->descriptionAffichage .= "<br>".$this->race."<br>".$this->genre." <br>".$this->couleur." <br>";	
-=======
 		$this->espece				= $this->getPOSTValue( 'espece');
 		$this->annee				= $this->getPOSTValue( 'annee');
 		$this->descriptionAffichage .= "<br>".$this->marque."<br>".$this->longueur." CV<br>".$this->nbrMats." mats<br>".$this->type_voilier."<br>".$this->annee."<br>";	
->>>>>>> 2fd98b12b8dd13e486173ca1b17aae02b2d0ab7b
 	}
 
 
@@ -337,26 +322,14 @@ class Animaux extends AnnonceSQL
 	public function readData( $array_kv )
 	{
 		parent::readData( $array_kv );
-<<<<<<< HEAD
-		$this->race  	 		= $array_kv[ 'race' ];
-		
-		$this->genre 			= $array_kv[ 'genre' ];
-		$this->couleur 			= $array_kv[ 'couleur'  ]; 
-		$this->descriptionAffichage .= "<br>".$this->race."<br>".$this->genre." genre<br>".$this->couleur." <br>";	
-=======
 		$this->race 			= $array_kv[ 'race' ];
 		$this->espece 			= $array_kv[ 'espece' ];
 		$this->descriptionAffichage .= "<br>".$this->espece."<br>".$this->race."<br>".$this->annee."<br>";	
->>>>>>> 2fd98b12b8dd13e486173ca1b17aae02b2d0ab7b
 	}
 
 	public function save()
 	{
-<<<<<<< HEAD
-		$req = "INSERT INTO nicolas.annonces ( typeannonce, titre, description, image, prix, race, genre, couleur ) VALUES ( 'ANI', '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix.", '".$this->race."', ".$this->genre." ,'".$this->couleur." );";	
-=======
 		$req = "INSERT INTO xavier.annonces ( typeannonce,  titre,  description, image,                                      prix,             race,            espece, annee ) VALUES                              ( 'ANI', '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix.", '".$this->race."', '".$this->espece."' , ".$this->annee." );";	
->>>>>>> 2fd98b12b8dd13e486173ca1b17aae02b2d0ab7b
 		return executeSQL( $req );
 	}
 }
@@ -444,6 +417,7 @@ function setHeaderNoCache()
 	echo "<link href=\"annonce.css\" rel=\"stylesheet\">\n";
 	//echo "<link href=\"formulaire.css\" rel=\"stylesheet\">\n";
 	echo "<script>\n";
+		
 	echo "function goAffGrand( id )\n";
 	//echo "{ window.location.replace(\"http://localhost$__URL_local/affiche_grand.php?IDAnnonce=\"+id );}\n";
 	echo "{ window.location.href=\"http://localhost$__URL_local/affiche_grand.php?IDAnnonce=\"+id ;}\n";
@@ -452,6 +426,8 @@ function setHeaderNoCache()
 	//echo "{ window.location.replace(\"http://localhost$__URL_local/affiche_grand.php?IDAnnonce=\"+id );}\n";
 	echo "{ window.location.href=\"http://localhost$__URL_local/accueil.php\" ;}\n";
 
+
+	
 	echo "</script>\n";
 	echo "</head>\n";
 	echo "<body>\n";
