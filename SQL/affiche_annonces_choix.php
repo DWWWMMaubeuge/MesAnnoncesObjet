@@ -46,7 +46,10 @@ function chargeAnnonce ( type )
     }
   };
 
-  xhttp.open("GET", "http://localhost/Maubeuge/MesAnnoncesObjet/SQL/getAnnonces.php?type="+type, true);
+  xhttp.open("GET", "http://localhost/MesAnnoncesObjet/SQL/getAnnonces.php?type="+type, true);
+
+
+
   xhttp.send();
 }
 </script>
