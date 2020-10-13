@@ -312,13 +312,7 @@ class Animaux extends AnnonceSQL
 
 		$req = "SELECT * FROM fatima.genre_animaux;"; 
 		$result = executeSQL( $req );
-<<<<<<< HEAD
-
-
-		$comboBoxGenre = "<select name=\"genre_animaux\" id=\"genre\">\n";
-=======
-		$comboBox = "<select name=\"espece\" onchange=\"loadRace(this.value);\">\n";
->>>>>>> master
+		$comboBoxGenre = "<select name=\"espece\" onchange=\"loadRace(this.value);\">\n";
 		while ( $row = $result->fetch_assoc() )
 		{	
 			$comboBoxGenre .= "<option value=\"".$row[ 'genre' ]."\">".$row[ 'genre' ]."</option>\n";
@@ -328,13 +322,7 @@ class Animaux extends AnnonceSQL
 
 		$req = "SELECT * FROM fatima.age_animaux;"; 
 		$result = executeSQL( $req );
-<<<<<<< HEAD
-
-
-		$comboBoxAge = "<select name=\"age_animaux\" id=\"age\">\n";
-=======
-		$comboBox = "<select name=\"race\" id=\"selectRace\" >\n";
->>>>>>> master
+		$comboBoxAge = "<select name=\"race\" id=\"selectRace\" >\n";
 		while ( $row = $result->fetch_assoc() )
 		{	
 			$comboBoxAge .= "<option value=\"".$row[ 'age' ]."\">".$row[ 'age' ]."</option>\n";
