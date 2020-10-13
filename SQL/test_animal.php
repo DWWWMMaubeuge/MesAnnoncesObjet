@@ -2,7 +2,7 @@
 include ( 'AO_fonctions_generalesSQL.php');
 
 setHeaderNoCache();
-gestionSession();
+//gestionSession();
 
 $newAnnonce = new Animaux();
 
