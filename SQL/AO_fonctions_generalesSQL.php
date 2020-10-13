@@ -436,7 +436,7 @@ function setHeaderNoCache()
 					echo "document.getElementById(\"selectRace\").innerHTML = this.responseText;\n";
 			echo "}\n";
 		echo "};\n";
-		echo "xhttp.open(\"GET\", \"http://localhost/Maubeuge/MesAnnoncesObjet/SQL/ajax01_get_race.php?espece=\"+espece, true);\n";
+		echo "xhttp.open(\"GET\", \"http://localhost/xavier/MesAnnoncesObjet/sql/MesAnnoncesObjetCours/SQL/ajax01_get_race.php?espece=\"+espece, true);\n";
 		echo "xhttp.send();\n";
 	echo "}\n";
 	echo "</script>\n";
