@@ -31,7 +31,8 @@ function executeSQL( $req )
 }
 
 $espece = $_GET[ 'espece' ];
-$req = "select xavier.race_animale.nom from xavier.race_animale, xavier.espece_animale where xavier.espece_animale.id=xavier.race_animale.id_espece and espece_animale.nom='$espece';";
+$req = "select xavier.race_animale.nom from xavier.race_animale, 
+xavier.espece_animale where xavier.espece_animale.id=xavier.race_animale.id_espece and espece_animale.nom='$espece';";
 
 //$req = "SELECT * FROM xavier.race_animale;"; 	
 $result = executeSQL( $req );

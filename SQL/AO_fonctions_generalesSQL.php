@@ -324,6 +324,8 @@ class Animaux extends AnnonceSQL
 		parent::readData( $array_kv );
 		$this->race 			= $array_kv[ 'race' ];
 		$this->espece 			= $array_kv[ 'espece' ];
+		$this->annee 			= $array_kv[ 'annee' ];
+
 		$this->descriptionAffichage .= "<br>".$this->espece."<br>".$this->race."<br>".$this->annee."<br>";	
 	}
 
@@ -423,7 +425,7 @@ function setHeaderNoCache()
 					echo "document.getElementById(\"selectRace\").innerHTML = this.responseText;\n";
 			echo "}\n";
 		echo "};\n";
-		echo "xhttp.open(\"GET\", \"http://localhost/Maubeuge/MesAnnoncesObjet/SQL/ajax01_get_race.php?espece=\"+espece, true);\n";
+		echo "xhttp.open(\"GET\", \"http://localhost/MesAnnoncesObjet/SQL/ajax01_get_race.php?espece=\"+espece, true);\n";
 		echo "xhttp.send();\n";
 	echo "}\n";
 	echo "</script>\n";
