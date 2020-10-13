@@ -1,7 +1,7 @@
-<a href='affiche_annonces_choix.php?type=IMO'>annonce IMMOBILIER</a><br>
-<a href='affiche_annonces_choix.php?type=CAR'>annonce VOITUTE</a><br>
-<a href='affiche_annonces_choix.php?type=VOI'>annonce VOILIER</a><br>
-<a href='affiche_annonces_choix.php?type=ANI'>annonce ANIMAUX</a><br>
+<input type="button" value="IMMOBILIER" onclick="chargeAnnonce('IMO');">
+<input type="button" value="VOITURE" onclick="chargeAnnonce('CAR');">
+<input type="button" value="VOILIER" onclick="chargeAnnonce('VOI');">
+<input type="button" value="ANIMAUX" onclick="chargeAnnonce('ANI');">
 
 
 <style>
@@ -15,12 +15,13 @@
 
 .vignette_annonce  
 {
-  background-color: #f1f1f1;
+  background-color: #FFFFFF;
   width: 200px;
+  height: 230px;
   margin: 10px;
   text-align: center;
-  line-height: 75px;
-  font-size: 30px;
+  line-height: 15px;
+  font-size: 12px;
 }
 </style>
 
@@ -29,38 +30,32 @@ include ( 'AO_fonctions_generalesSQL.php');
 
 setHeaderNoCache();
 
+?>
+<script>
+function chargeAnnonce ( type ) 
+{
+    console.log( "type: "+type )
 
+  var xhttp = new XMLHttpRequest();
 
+  xhttp.onreadystatechange = function() 
+  {
+    if (this.readyState == 4 && this.status == 200 ) 
+    {
+      document.getElementById("divContainerAnnonces").innerHTML = this.responseText;
+    }
+  };
 
-$type = $_GET[ 'type' ];
-
-$req = "SELECT * FROM xavier.annonces Where typeannonce=\"$type\";"; 
-
-//$req = "SELECT * FROM xavier.annonces, xavier.marque_voiture WHERE marque_voiture.id=annonces.marque ;"; 
-
-$result = executeSQL( $req );
-
-echo "<div class=\"container_annonces\">";
-while ( $row = $result->fetch_assoc() )
-{	
-	echo $row[ 'typeannonce' ]."<br>"; 
-
-	if ( $row[ 'typeannonce' ] == 'IMO')
-		$anonce = new Immobilier();
-	else if ( $row[ 'typeannonce' ] == 'CAR')
-		$anonce = new Voiture();
-	else if ( $row[ 'typeannonce' ] == 'VOI')
-		$anonce = new Voilier();
-	else if ( $row[ 'typeannonce' ] == 'ANI')
-		$anonce = new Animaux();
-	else
-		$anonce = new AnnonceSQL();
-
-	$anonce->readData( $row );
-    echo "<div class=\"vignette_annonce\">";
-    echo $anonce->show();	
-    echo "</div>";
+  xhttp.open("GET", "http://localhost/Maubeuge/MesAnnoncesObjet/SQL/getAnnonces.php?type="+type, true);
+  xhttp.send();
 }
+</script>
+
+
+<?php
+
+
+echo "<div class=\"container_annonces\" id=\"divContainerAnnonces\">";
 echo "</div>";
 
 
