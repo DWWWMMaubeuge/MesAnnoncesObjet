@@ -17,15 +17,10 @@ function loadDoc ()
 {
 
   var xhttp = new XMLHttpRequest();
-<<<<<<< HEAD
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) 
-=======
 
   xhttp.onreadystatechange = function() 
   {
     if (this.readyState == 4 && this.status == 200 ) 
->>>>>>> master
     {
       document.getElementById("demo").innerHTML = this.responseText;
     }
