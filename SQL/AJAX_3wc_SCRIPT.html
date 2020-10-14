@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+ <h1> The XMLHTTPRequest Objet </h1>
+
+ <p id= "demo" > let AJAX change this text . </p>
+
+ <button type = "button" onclick= "loadDoc ()">change content> </button>
+
+ <script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "http://localhost/MesAnnoncesObjet/SQL/AJAX_3wc_TEXT.html", true);
+  xhttp.send();
+}
+</script>
+
+
+
+
+
+    
+</body>
+</html>

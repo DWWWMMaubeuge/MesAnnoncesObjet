@@ -18,6 +18,9 @@ function executeSQL( $req )
 		}
 
 
+
+
+		
 		echo $req."<br>";
 		$result = $conn->query( $req );
 		if ($conn->error) 
