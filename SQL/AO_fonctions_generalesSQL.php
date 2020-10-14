@@ -456,4 +456,17 @@ function gestionSession()
 	}	
 }
 
+
+
+function affMenuSaisie()
+{
+	echo "<a href=\"saisie_annonce.php\" >Annonce</a><br>\n"; 
+	echo "<a href=\"saisie_annonce_immo.php\" >Immobilier</a><br>\n"; 
+	echo "<a href=\"saisie_annonce_voilier.php\" >Voiliers</a><br>\n"; 
+	echo "<a href=\"saisie_annonce_voiture.php\" >Voiture</a><br>\n"; 
+	echo "<a href=\"saisie_annonce_animal.php\" >Animaux</a><br>\n"; 
+}
+
+
+
 ?>
