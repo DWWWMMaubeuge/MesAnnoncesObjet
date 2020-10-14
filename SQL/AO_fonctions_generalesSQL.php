@@ -58,7 +58,7 @@ class AnnonceSQL
 		//echo "<h3>section ".$this->section."</h3>\n";	
 		echo "<h2>".$this->titre."</h2>\n";	
 		echo "<p>".$this->descriptionAffichage."</p>\n";
-		echo "<img src='" .$this->image."'  width='150' height='150' >" ;
+		echo "<img src='" .$this->image."'  width='80' height='80' >" ;
 		echo "<br><strong>".$this->prix."€uros</strong>\n";
 	}
 
@@ -390,7 +390,7 @@ function executeSQL( $req )
 		}
 
 
-		echo $req."<br>";
+		//echo $req."<br>";
 		$result = $conn->query( $req );
 		if ($conn->error) 
 		{
@@ -465,5 +465,18 @@ function gestionSession()
 		$_SESSION["annonces"] = $annonces;
 	}	
 }
+
+
+
+function affMenuSaisie()
+{
+	echo "<a href=\"saisie_annonce.php\" >Annonce</a><br>\n"; 
+	echo "<a href=\"saisie_annonce_immo.php\" >Immobilier</a><br>\n"; 
+	echo "<a href=\"saisie_annonce_voilier.php\" >Voiliers</a><br>\n"; 
+	echo "<a href=\"saisie_annonce_voiture.php\" >Voiture</a><br>\n"; 
+	echo "<a href=\"saisie_annonce_animal.php\" >Animaux</a><br>\n"; 
+}
+
+
 
 ?>
