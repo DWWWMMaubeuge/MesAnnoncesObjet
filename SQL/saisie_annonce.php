@@ -16,7 +16,9 @@ gestionSession();
 </form>
 */
 
+affMenuSaisie();
 
+<<<<<<< HEAD
 
 
 ?>
@@ -34,6 +36,8 @@ gestionSession();
 
 
 <?php
+=======
+>>>>>>> master
 $newAnnonce = new AnnonceSQL();
 
 if ( isset($_POST['ok']) )
