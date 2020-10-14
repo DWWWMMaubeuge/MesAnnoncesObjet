@@ -18,17 +18,8 @@ gestionSession();
 
 
 
+affMenuSaisie();
 
-?>
-
-<a href="saisie_annonce.php" >Annonce</a> 
-<br> 
-<a href="saisie_annonce_immo.php" >Immobilier</a> 
-<br> 
-<a href="saisie_annonce_voiture.php" >Voiture</a> 
-<br> 
-
-<?php
 $newAnnonce = new Immobilier();
 
 if ( isset($_POST['ok']) )
