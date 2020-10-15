@@ -3,6 +3,7 @@ getDataAJAX( "div2", "donneDate.php" );
 getDataAJAX( "div3", "metsAuCarre.php?valeur=9" );
 getDataAJAX( "div4", "metsAuCarre.php?valeur=4" );
 
+
 function getDataAJAX( divID, page )
 {
     var getData = new XMLHttpRequest();
@@ -13,6 +14,13 @@ function getDataAJAX( divID, page )
             document.getElementById( divID ).innerHTML = this.responseText;
         }
     }; 
-    getData.open( "GET", "http://localhost/Maubeuge/MesAnnoncesObjet/SQL/"+page, true  )
+    getData.open( "GET", "http://localhost/MesAnnoncesObjet/SQL/"+page, true  )
     getData.send();
 }
+
+function GETCARRE( value )
+{
+    getDataAJAX( "div4", "metsAuCarre.php?valeur="+value );
+
+}
+

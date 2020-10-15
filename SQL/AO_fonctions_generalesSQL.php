@@ -305,6 +305,7 @@ class Animaux extends AnnonceSQL
 		$comboBox .= "</select><br>\n";
 		$this->strFormField .= $comboBox; 
 
+
 		$req = "SELECT * FROM xavier.race_animale;"; 	
 		$result = executeSQL( $req );
 		$comboBox = "<select name=\"race\" id=\"selectRace\" >\n";
@@ -367,8 +368,8 @@ function executeSQL( $req )
 	if ( $req != "" )
 	{
 		$servername = "10.115.49.73";
-		$username = "xavier";
-		$password = "xavier";
+		$username = "fouad";
+		$password = "fouad";
 
 		// Create connection
 		$conn = new mysqli($servername, $username, $password);
