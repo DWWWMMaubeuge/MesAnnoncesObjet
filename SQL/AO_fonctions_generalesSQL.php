@@ -458,7 +458,7 @@ function setHeaderNoCache()
 		echo "xhttp.open(\"GET\", \"http://localhost/Maubeuge/MesAnnoncesObjet/SQL/ajax01_get_race.php?espece=\"+espece, true);\n";
 		echo "xhttp.send();\n";
 	echo "}\n";
-	echo "</script>\n";
+	echo "</script>\n";               
 	echo "</head>\n";
 	echo "<body>\n";
 }
