@@ -3,6 +3,12 @@ getDataAJAX( "div2", "donneDate.php" );
 getDataAJAX( "div3", "metsAuCarre.php?valeur=9" );
 getDataAJAX( "div4", "metsAuCarre.php?valeur=4" );
 
+function getCarre( valeur )
+{
+    getDataAJAX( "div4", "metsAuCarre.php?valeur="+valeur );
+}
+
+
 function getDataAJAX( divID, page )
 {
     var getData = new XMLHttpRequest();
@@ -13,6 +19,7 @@ function getDataAJAX( divID, page )
             document.getElementById( divID ).innerHTML = this.responseText;
         }
     }; 
+<<<<<<< HEAD
       
     getData.open( "GET", "http://localhost:8080/MesAnnoncesObjet/SQL/"+page, true  )
     getData.send();
@@ -22,3 +29,10 @@ function getCarre (value) {
 
           getDataAJAX("div4","metsAuCarre.php?valeur="+value);
 }
+=======
+    //getData.setRequestHeader('Access-Control-Request-Headers', 'x-requested-with');   
+    getData.open( "GET", "http://localhost/Maubeuge/MesAnnoncesObjet/SQL/"+page, true  );    getData.open( "GET", "http://localhost/Maubeuge/MesAnnoncesObjet/SQL/"+page, true  )
+    getData.send();
+
+}
+>>>>>>> master

@@ -42,15 +42,36 @@ class AnnonceSQL
 	protected function getPOSTValue( $key )
 	{
 		if ( isset($_POST[ $key ]) ) 
-			return $_POST[ $key ];
+			return htmlspecialchars( $_POST[ $key ] );
 		return null;
 	}
 
 
 	public function save()
 	{
-		$req = "INSERT INTO xavier.annonces ( typeannonce, titre, description, image, prix ) VALUES ( 'ANN', '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix." );";
-		return executeSQL( $req );
+		$conn = openDB();
+        try 
+        {        
+          $stmt = $conn->prepare( "INSERT INTO xavier.annonces ( typeannonce, titre, description, image, prix ) VALUES ( :xtype, :xtitre,  :xdescription, :ximage, :xprix );");
+
+		  $stmt->bindParam(':type', 'ANN' );
+          $stmt->bindParam(':titre', $this->titre );
+          $stmt->bindParam(':description', $this->description );
+          $stmt->bindParam(':image', $this->image );
+          $stmt->bindParam(':prix', $this->prix );
+          // insert a row
+          $stmt->execute();
+          echo "New records created successfully";
+        } 
+        catch( PDOException $e) 
+        {
+          echo "Error: " . $e->getMessage();
+          die("Connection failed: programme termine");
+        }
+        $conn = null;
+
+		//$req = "INSERT INTO xavier.annonces ( typeannonce, titre, description, image, prix ) VALUES ( 'ANN', '".$this->titre."','".$this->description."','".$this->image."', ".$this->prix." );";
+		//return executeSQL( $req );
 	}
 
 	public function show()
@@ -388,7 +409,26 @@ class Animaux extends AnnonceSQL
 
 
 
-
+function openDB()
+{
+    $servername = "10.115.49.73";
+    $username = "xavier";
+    $password = "xavier";
+    $dbname = "xavier";
+    
+    try 
+    {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        // set the PDO error mode to exception
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $conn;
+    } 
+    catch( PDOException $e) 
+    {
+        echo "Error: " . $e->getMessage();
+        die("Connection failed: programme termine");
+    }
+} 
 
 
 function executeSQL( $req )
@@ -489,7 +529,7 @@ function gestionSession()
 
 
 function affMenuSaisie()
-{
+{	
 	echo "<a href=\"saisie_annonce.php\" >Annonce</a><br>\n"; 
 	echo "<a href=\"saisie_annonce_immo.php\" >Immobilier</a><br>\n"; 
 	echo "<a href=\"saisie_annonce_voilier.php\" >Voiliers</a><br>\n"; 
