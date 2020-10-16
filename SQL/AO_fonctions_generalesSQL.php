@@ -380,6 +380,36 @@ function setMenuLink()
 
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> master
 function openDB()
 {
     $servername = "10.115.49.73";

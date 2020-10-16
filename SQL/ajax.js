@@ -23,4 +23,8 @@ function getDataAJAX( divID, page )
     getData.open( "GET", "http://localhost/Maubeuge/MesAnnoncesObjet/SQL/"+page, true  );    getData.open( "GET", "http://localhost/Maubeuge/MesAnnoncesObjet/SQL/"+page, true  )
     getData.send();
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> master
