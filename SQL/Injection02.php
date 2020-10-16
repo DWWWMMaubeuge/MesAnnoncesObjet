@@ -3,9 +3,9 @@
 function openDB()
 {
     $servername = "10.115.49.73";
-    $username = "xavier";
-    $password = "xavier";
-    $dbname = "xavier";
+    $username = "fatima";
+    $password = "fatima";
+    $dbname = "fatima";
     
     try 
     {
@@ -29,8 +29,8 @@ function executeSQLMySQLI( $req )
 	if ( $req != "" )
 	{
 		$servername = "10.115.49.73";
-		$username = "xavier";
-		$password = "xavier";
+		$username = "fatima";
+		$password = "fatima";
 
 		// Create connection
 		$conn = new mysqli($servername, $username, $password);
@@ -55,7 +55,7 @@ function executeSQLMySQLI( $req )
 }
 
 
-$req = "SELECT * FROM  xavier.test_injection;";
+$req = "SELECT * FROM  fatima.test_injection;";
 echo "$req<br>";
 $rows = executeSQLMySQLI( $req );
 while( $row = $rows->fetch_array() )
@@ -65,7 +65,7 @@ while( $row = $rows->fetch_array() )
 
 echo "<br><br>";
 
-$req = "SELECT * FROM  xavier.test_injection;";
+$req = "SELECT * FROM  fatima.test_injection;";
 echo "$req<br>";
 $rows = executeSQLMySQLI( $req );
 while( $row = $rows->fetch_assoc() )
@@ -75,7 +75,7 @@ while( $row = $rows->fetch_assoc() )
 
 echo "<br><br>";
 
-$req = "SELECT * FROM  xavier.test_injection;";
+$req = "SELECT * FROM  fatima.test_injection;";
 echo "$req<br>";
 $rows = executeSQLMySQLI( $req );
 while( $row = $rows->fetch_object() )
