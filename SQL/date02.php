@@ -61,8 +61,43 @@ $mois = [ '', 'janvier', 'fevrier', 'mars', 'avril', 'mai', 'juin', 'juillet', '
 echo "le ".$jours[ date('w',$time_stamp) ].date( ' d ', $time_stamp  ).$mois[ date('n',$time_stamp) ].date( ' Y', $time_stamp  )."<br>";
 
 
+$time_stamp  = mktime( 8, 10, 1, 5, 21, 1961  );
+
+$diff = time() - $time_stamp;
+
+echo "$diff<br>";
+echo date( 'D Y-m-d h:i:s', $diff  )."<br>";
 
 
+$d1 = new DateTime();
+$dn = new DateTime('1961-05-21');
+$interval = $dn->diff($d1);
+echo $interval->format('%S sec')."<BR>";
+
+
+function timeStamp2String( $time_en_sec  )
+{
+    echo "$time_en_sec<br>";
+    $reste_sec = $time_en_sec % 60;
+    $time_en_sec -= $reste_sec; 
+    $time_en_min = $time_en_sec/60;
+
+    $reste_min = $time_en_min % 60;
+    $time_en_min  -=  $reste_min;
+    $time_en_heures = $time_en_min/60;
+
+    $reste_heures    = $time_en_heures % 24;
+    $time_en_heures  -=  $reste_heures;
+    $time_en_jours = $time_en_heures/24;
+
+    echo "$time_en_jours jours $reste_heures heures $reste_min min $reste_sec seconds";
+}
+
+$date_naissance = mktime( 8, 10, 1, 5, 21, 1961  );
+
+$age_en_seconde = time() - $date_naissance;
+
+timeStamp2String( $age_en_seconde );
 
 
 //DATE : stocke une date au format AAAA-MM-JJ (Année-Mois-Jour) ;
