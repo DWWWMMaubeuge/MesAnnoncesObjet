@@ -5,8 +5,6 @@ setHeaderNoCache();
 gestionSession();
 echo setMenuLink();
 
-<<<<<<< HEAD
-=======
 /*
 <form action="saisie_annonce.php" > 
 <input type="radio" id="1" name="type_annonce" value="ANN">
@@ -23,7 +21,6 @@ echo setMenuLink();
 
 affMenuSaisie();
 
->>>>>>> master
 $newAnnonce = new Immobilier();
 
 if ( isset($_POST['ok']) )
