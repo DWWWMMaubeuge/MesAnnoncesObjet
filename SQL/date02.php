@@ -85,7 +85,7 @@ $d1 = new DateTime();
 $dn = new DateTime('1961-05-21');
 $interval = $dn->diff($d1);
 echo $interval->format('%S sec')."<BR>";
-
+    
 
 function timeStamp2String( $time_en_sec  )
 {

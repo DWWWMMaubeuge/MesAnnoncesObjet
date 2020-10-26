@@ -1,15 +1,15 @@
 <?php
 
-
-// 0 chien -> aboie
-// 1 chat -> miaule
-// 2 poisson -> rien
-
-
-$animaux = [ 'chien', 'chat', 'poisson' ];
-$cris = [ 'aboie', 'miaule', 'rien' ];
+$tableau = [
+                [ "1.1", "1.2"],
+                [ "2.1", "2.2"]
+            ]; 
 
 
+
+
+
+<<<<<<< HEAD
 echo "<br> Version a l'arrache<br>";
 
 
@@ -67,6 +67,8 @@ $listeAnimaux = [ $chien, $chat, $poisson   ];
 foreach(  $listeAnimaux as $anim )
     $anim->cri();
 
+=======
+>>>>>>> master
 
 
 ?> */
