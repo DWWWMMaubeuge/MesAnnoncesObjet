@@ -1,13 +1,15 @@
 <?php
 
+$tableau = [
+                [ "1.1", "1.2"],
+                [ "2.1", "2.2"]
+            ]; 
 
-// 0 chien -> aboie
-// 1 chat -> miaule
-// 2 poisson -> rien
 
 //tableau boucle for
 $animaux = [ 'chien', 'chat', 'poisson' ];
 $cris = [ 'aboie', 'miaule', 'rien' ];
+
 
 //tableau boucle foreach
 $animals=array('chien'=>'aboie', 'chat'=>'miaule','poisson'=>'rien');
@@ -117,6 +119,5 @@ foreach(  $listeAnimaux as $anim )
 
 
 */
-
 
 ?>
