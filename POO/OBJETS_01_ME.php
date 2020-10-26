@@ -1,4 +1,3 @@
-
 <?php
 
 $tableau = [
@@ -18,15 +17,5 @@ $tableau = [
      
                 
                     }
-echo "batard de xavier" ;
+
             ?>
-
-
-
-
-
-
-
-
-
-
