@@ -6,9 +6,9 @@
 function openDB()
 {
     $servername = "10.115.49.73";
-    $username = "xavier";
-    $password = "xavier";
-    $dbname = "xavier";
+    $username = "steven";
+    $password = "steven";
+    $dbname = "steven";
     
     try 
     {
@@ -33,8 +33,8 @@ function executeSQLPDO( $req )
 	if ( $req != "" )
 	{
 		$servername = "10.115.49.73";
-		$username = "xavier";
-		$password = "xavier";
+		$username = "steven";
+		$password = "steven";
 
 		// Create connection
 		$conn = new mysqli($servername, $username, $password);
@@ -66,8 +66,8 @@ function executeSQLMySQLI( $req )
 	if ( $req != "" )
 	{
 		$servername = "10.115.49.73";
-		$username = "xavier";
-		$password = "xavier";
+		$username = "steven";
+		$password = "steven";
 
 		// Create connection
 		$conn = new mysqli($servername, $username, $password);
@@ -112,7 +112,7 @@ if ( $_POST )
         $conn = openDB();
         try 
         {        
-          $stmt = $conn->prepare("INSERT INTO xavier.test_injection (nom, age) VALUES (:xnom, :xage )");
+          $stmt = $conn->prepare("INSERT INTO steven.test_injection (nom, age) VALUES (:xnom, :xage )");
 
           $stmt->bindParam(':xnom', $nom );
           $stmt->bindParam(':xage', $age );
