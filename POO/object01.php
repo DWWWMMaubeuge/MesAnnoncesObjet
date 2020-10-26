@@ -13,12 +13,24 @@ $cris = [ 'aboie', 'miaule', 'rien' ];
 echo "<br> Version a l'arrache<br>";
 
 
+foreach($animaux as $cris =>$element){
+
+    echo "$cris=>$element <br>";
+}
+
+
+
+
+/* for ($numero=0; $numero<3; $numero++){
+
+    echo "$animaux[$numero]<br>";
+} */
 
 
 
 
 
-echo "<br> Version Procedurale (ou fonctionnelle)<br>";
+/* echo "<br> Version Procedurale (ou fonctionnelle)<br>";
 
 function afficheAnimal(  $num )
 {
@@ -57,4 +69,4 @@ foreach(  $listeAnimaux as $anim )
 
 
 
-?>
+?> */
