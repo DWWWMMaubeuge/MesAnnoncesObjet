@@ -29,7 +29,7 @@ echo "batard de xavier" ;
 // 1.1   |  1.2   |
 // 2.1   |  2.2   |
 
-
+echo "<br><br>à l'arrache<br>";
 echo "<table border=\"solid\">\n";
 for( $ligne=0 ; $ligne < count(  $tableau ) ; $ligne++ )
 {
@@ -42,6 +42,7 @@ for( $ligne=0 ; $ligne < count(  $tableau ) ; $ligne++ )
 }
 echo "</table>\n";
 
+echo "<br><br>procedurale ou fonctionnelle<br>";
 
 
 
