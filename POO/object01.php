@@ -57,15 +57,17 @@ function afficheAnimal2( $espece )
 {
     GLOBAL $animals;
    
-    foreach ($animals as $key)
-    {  if ($animals == $espece)
+    foreach ($animals as $key=>$values)
+    {  if ($key == $espece)
         {
-            echo $animals[0]."->".$animals[1]."<br>";
+            echo $key."->".$values."<br>";
         break;
         }
     }     
 
 }
+
+echo "<br>";
 
 afficheAnimal2('chat');
 
