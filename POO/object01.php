@@ -1,59 +1,33 @@
 <?php
 
-
-// 0 chien -> aboie
-// 1 chat -> miaule
-// 2 poisson -> rien
-
-
-$animaux = [ 'chien', 'chat', 'poisson' ];
-$cris = [ 'aboie', 'miaule', 'rien' ];
+$tableau = [
+    [ "1.1", "1.2"],
+    [ "2.1", "2.2"],
+    [ "3.1", "3.2"]
+            ]; 
 
 
-echo "<br> Version a l'arrache<br>";
+// 1.1   |  1.2   |
+// 2.1   |  2.2   |
 
-
-
-
-
-
-
-echo "<br> Version Procedurale (ou fonctionnelle)<br>";
-
-function afficheAnimal(  $num )
+echo "<br><br>à l'arrache<br>";
+echo "<table border=\"solid\">\n";
+for( $ligne=0 ; $ligne < count(  $tableau ) ; $ligne++ )
 {
-    GLOBAL $animaux, $cris;
+    echo "<tr>\n";
+    $ligneTab = $tableau[ $ligne ];
+    for( $colone=0 ; $colone < count(  $ligneTab ) ; $colone++ )
+        echo "<td>".$ligneTab[$colone]."</td>\n";
+
+    echo "</tr>\n";
 }
+echo "</table>\n";
 
-
-afficheAnimal(  0 );
-// 0 chien -> aboie
-
-
-
-echo "<br> Version Objet<br>";
-
-class Animal
-{
-}
-
-class Chien extends Animal
-{
-}
+echo "<br><br>procedurale ou fonctionnelle<br>";
 
 
 
 
-
-$chien = new Chien();
-$chat = new Chat();
-$poisson = new Poisson();
-
-
-$listeAnimaux = [ $chien, $chat, $poisson   ];
-
-foreach(  $listeAnimaux as $anim )
-    $anim->cri();
 
 
 
