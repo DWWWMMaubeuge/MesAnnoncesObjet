@@ -61,7 +61,7 @@ function afficheAnimal(  $num )
 
 function afficheAnimaux(  $tab )
 {
-    foreach( $animaux as $animal )
+    foreach( $tab as $animal )
     {
         echo $animal[0]." -> ".$animal[ 1 ]."<br>";
     } 
