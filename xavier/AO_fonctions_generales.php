@@ -86,21 +86,18 @@ class Immobilier extends Annonce
 	public function __construct( )
 	
 	{
-<<<<<<< HEAD
+
 		//$this->surface = 65;
 		//$this->nbrPieces = 4;
 	} 
-=======
-<<<<<<< HEAD
+
 		//$this->surface = 65;
 		//$this->nbrPieces = 4;
 	} 
-=======
+
 		$this->surface = 65;
 		$this->nbrPieces = 4;
 	}  
->>>>>>> c5b44a3ee6c88a590de341f88ea8cb1a0c73d76d
->>>>>>> master
 
 	public function parsePOST()
 	
@@ -122,8 +119,6 @@ class Immobilier extends Annonce
 		return $this->strFormHead.$this->strFormField.$this->strFormEnd; 
 	}
 
-<<<<<<< HEAD
-=======
 	public function show()
 	{
 
@@ -136,7 +131,6 @@ class Immobilier extends Annonce
 
 
 	}
->>>>>>> c5b44a3ee6c88a590de341f88ea8cb1a0c73d76d
 }
 
 

@@ -13,7 +13,7 @@ $cris = [ 'aboie', 'miaule', 'rien' ];
 // 1.1   |  1.2   |
 // 2.1   |  2.2   |
 
-echo "<br><br>à l'arrache<br>";
+echo "<br><br>à l'arrache XAVIER<br>";
 echo "<table border=\"solid\">\n";
 for( $ligne=0 ; $ligne < count(  $tableau ) ; $ligne++ )
 {
@@ -26,7 +26,7 @@ for( $ligne=0 ; $ligne < count(  $tableau ) ; $ligne++ )
 }
 echo "</table>\n";
 
-echo "<br><br>procedurale ou fonctionnelle<br>";
+
 
 
 
@@ -95,30 +95,46 @@ echo "<br> Version Objet<br>";
 
 echo "<br>";
 
-class Animal
+$tableau = [
+    [ "1.1", "1.2"],
+    [ "2.1", "2.2"],
+    [ "3.1", "3.2","3.3"]
+            ]; 
+
+class Table
 {
-    protected $race;
-    protected $sound;
- 
+    protected $tab;
 
-public function __construct( )
-{   
-    $this->race=array();
-    $this->sound=array();
-   
+    public function __construct($t)
+    {   
+        $this->tab=$t;
+    }
+
+    public function display()
+    {   
+        
+        $this->tab;
+
+        echo "<table border=solid>";
+    
+    foreach ($this->tab as $ligne1 => $val)
+    {
+        echo "<tr>";
+        echo "<td>".($ligne1 + 1). ' : '."</td>";
+        foreach($val as $ni => $ligne2){
+            echo "<td>".$ligne2. " "."</td>";
+        }
+        echo "</tr>";
+    }
+    echo "</table>"; 
+    }
 }
 
 
-public function sound()
+$tabs= new Table($tableau);
+$tabs->display();
 
-{   
-  
-}
-
-}
-
-
-class Chien extends Animal
+/*class Chien extends Animal
 {
     public function sound()
 {
@@ -134,12 +150,12 @@ $chien = new Chien();
 //$poisson = new Poisson();
 
 
-/*$listeAnimaux = [ $chien, $chat, $poisson   ];
+$listeAnimaux = [ $chien, $chat, $poisson   ];
 
 foreach(  $listeAnimaux as $anim )
     $anim->cri();
 
 
 */
-                                    
+
 ?>
